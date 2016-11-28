@@ -1,0 +1,30 @@
+{
+  "name": "monocultured",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "resetdb": "knex migrate:rollback; knex migrate:latest; knex seed:run",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Michael Park <thatmichaelpark@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.15.2",
+    "boom": "^4.2.0",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-validation": "^1.0.1",
+    "humps": "^2.0.0",
+    "joi": "^10.0.1",
+    "jsonwebtoken": "^7.1.9",
+    "knex": "^0.12.6",
+    "morgan": "^1.7.0",
+    "pg": "^6.1.0"
+  }
+}
