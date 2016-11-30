@@ -3,8 +3,8 @@
 exports.up = function(knex) {
   return knex.schema.createTable('members', (table) => {
     table.increments();
-    table.string('member_name').notNullable().defaultTo('');
-    table.string('image_url').defaultTo('img/default.jpeg');
+    table.string('name').notNullable().defaultTo('');
+    table.string('image_url').defaultTo('img/memberdefault.jpeg');
     table.boolean('active').defaultTo(true);
     table.specificType('hashed_password',
       'char(60)').notNullable().defaultTo('');

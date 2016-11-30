@@ -7,10 +7,10 @@ exports.seed = function(knex) {
       knex('shops')
         .insert([{
           id: 1,
-          shop_name: 'Litho'
+          name: 'Litho'
         }, {
           id: 2,
-          shop_name: 'Foundry'
+          name: 'Foundry'
         }])
         .then(() =>
           knex.raw(

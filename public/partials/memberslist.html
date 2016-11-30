@@ -1,0 +1,7 @@
+<h1>Members List</h1>
+<div ng-repeat="member in membersListController.members">
+  <a ng-click="membersListController.click(member.id)">
+    <img ng-src="{{ member.imageUrl }}" alt="{{ member.imageUrl }}" />
+    {{ member.name }}
+  </a>
+</div>

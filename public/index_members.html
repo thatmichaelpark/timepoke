@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="monoculturedApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Members</title>
+  </head>
+  <body>
+    <a href="#/">Home</a>
+    <hr>
+    <main ng-view></main>
+    <hr>
+
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/angular-route.js"></script>
+    <script>
+    (function() {
+      'use strict';
+
+      angular.module('monoculturedApp', ['ngRoute']);
+
+    })();
+    </script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/app.config.js"></script>
+  </body>
+</html>

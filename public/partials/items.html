@@ -1,0 +1,11 @@
+<span>{{ itemsController.entry.memberId }}</span>
+<span>{{ itemsController.entry.hours }}</span>
+
+<div ng-repeat="item in itemsController.entry.items">
+  <span>{{ item.name }}</span>
+  <button type="button" name="button" ng-click="itemsController.click('-', item)">-</button>
+  <span>{{ item.qty }}</span>
+  <button type="button" name="button" ng-click="itemsController.click('+', item)">+</button>
+</div>
+
+<button type="button" name="button" ng-click="itemsController.clickNext()">Next</button>

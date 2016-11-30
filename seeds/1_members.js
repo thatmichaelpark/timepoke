@@ -7,16 +7,16 @@ exports.seed = function(knex) {
       knex('members')
         .insert([{
           id: 1,
-          member_name: 'Alliser Thorne'
+          name: 'Alliser Thorne'
         }, {
           id: 2,
-          member_name: 'Myrcella Baratheon'
+          name: 'Myrcella Baratheon'
         }, {
           id: 3,
-          member_name: 'Syrio Forel'
+          name: 'Syrio Forel'
         }, {
           id: 4,
-          member_name: 'Othell Yarwyck'
+          name: 'Othell Yarwyck'
         }])
         .then(() =>
           knex.raw(

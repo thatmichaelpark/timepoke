@@ -17,7 +17,6 @@
     "boom": "^4.2.0",
     "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
-    "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-validation": "^1.0.1",
     "humps": "^2.0.0",

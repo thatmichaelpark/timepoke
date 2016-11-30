@@ -1,0 +1,17 @@
+<p>
+  Member ID: {{ finalController.entry.memberId }}
+</p>
+<p>
+  Hours: {{ finalController.entry.hours }}
+</p>
+<p>
+  Shop ID: {{ finalController.entry.shopId }}
+</p>
+
+<div ng-repeat="item in finalController.entry.items">
+  {{ item.name }}
+  {{ item.id }}
+  {{ item.qty }}
+</div>
+
+<button type="button" name="button" ng-click="finalController.click()">OK</button>

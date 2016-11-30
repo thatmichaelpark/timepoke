@@ -3,7 +3,8 @@
 exports.up = function(knex) {
   return knex.schema.createTable('shops', (table) => {
     table.increments();
-    table.string('shop_name').notNullable().defaultTo('');
+    table.string('name').notNullable().defaultTo('');
+    table.string('image_url').defaultTo('img/shopdefault.jpeg');
     table.timestamps(true, true);
   });
 };

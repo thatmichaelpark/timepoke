@@ -1,0 +1,13 @@
+<span>{{ hoursController.entry.memberId }}</span>
+<button type="button" name="button" ng-click="hoursController.click('-')">-</button>
+<span>{{ hoursController.entry.hours }}</span>
+<button type="button" name="button" ng-click="hoursController.click('+')">+</button>
+
+<div ng-controller="ShopsController as shopsController">
+  <div ng-repeat="shop in shopsController.shops">
+    <a href="#" ng-click="shopsController.click(shop.id)">
+      <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
+      {{ shop.name }}
+    </a>
+  </div>
+</div>
