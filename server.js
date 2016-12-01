@@ -61,6 +61,8 @@ const members = require('./routes/members');
 app.use('/api', members);
 const shops = require('./routes/shops');
 app.use('/api', shops);
+const entries = require('./routes/entries');
+app.use('/api', entries);
 const token = require('./routes/token');
 app.use('/api', token);
 

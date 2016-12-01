@@ -21,7 +21,7 @@
     this.members = [];
     this.click = (id) => {
       entry.memberId = id;
-      console.log('hours');;;
+      entry.hours = 0;
       $location.path(`hours`);
     }
   })
@@ -54,7 +54,7 @@
           return {
             id: elem.id,
             name: elem.name,
-            qty: 0
+            quantity: 0
           };
         });
         $location.path(data.length ? `items` : `final`);
@@ -68,10 +68,10 @@
     this.entry = entry;
     this.click = (plusMinus, item) => {
       if (plusMinus === '+') {
-        ++item.qty;
+        ++item.quantity;
       } else { // -
-        if (item.qty) {
-          --item.qty;
+        if (item.quantity) {
+          --item.quantity;
         }
       }
     };
@@ -82,7 +82,7 @@
   .controller('FinalController', function(entry, $location) {
     this.entry = entry;
     this.click = () => {
-      console.log('write', this.entry);
+      entry.post(this.entry);
       $location.path(`/`);
     };
   })

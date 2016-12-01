@@ -3,8 +3,12 @@
 exports.up = function(knex) {
   return knex.schema.createTable('entries', (table) => {
     table.increments();
-    table.date('entry_date');
     table.integer('hours').defaultTo(0);
+    table.integer('member_id')
+      .notNullable()
+      .references('id')
+      .inTable('members')
+      .onDelete('CASCADE');
     table.integer('shop_id')
       .notNullable()
       .references('id')

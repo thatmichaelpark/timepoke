@@ -4,14 +4,24 @@
 
   const app = angular.module('monoculturedApp');
 
-  // entry service just collects the info for a time entry:
+  // entry service collects the info for a time entry:
   // member id, hours, other items
-  const entry = function() {
+  // and provides a post method to save a time entry.
+  const entry = function($http) {
+    const entriesServer = '/api/entries';
+    const entryItemsServer = '/api/entries_items';
     return {
       memberId: 0,
       shopId: 0,
       hours: 0,
-      items: []
+      items: [],
+      post: (entry) => {
+        $http.post(entriesServer, { entry })
+        .then((res) => res.data)
+        .catch((err) => {
+          console.log(err);
+        })
+      }
     };
   };
 
@@ -20,7 +30,6 @@
 
   const members = function($http) {
     const server = '/api/members';
-    const tokenServer = '/api/token';
 
     return {
       get: () =>
@@ -63,7 +72,6 @@
 
   const shops = function($http) {
     const server = '/api/shops';
-    const tokenServer = '/api/token';
 
     return {
       get: () =>

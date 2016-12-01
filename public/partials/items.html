@@ -4,7 +4,7 @@
 <div ng-repeat="item in itemsController.entry.items">
   <span>{{ item.name }}</span>
   <button type="button" name="button" ng-click="itemsController.click('-', item)">-</button>
-  <span>{{ item.qty }}</span>
+  <span>{{ item.quantity }}</span>
   <button type="button" name="button" ng-click="itemsController.click('+', item)">+</button>
 </div>
 
