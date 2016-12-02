@@ -19,8 +19,9 @@
       console.log(err);
     });
     this.members = [];
-    this.click = (id) => {
-      entry.memberId = id;
+    this.click = (member) => {
+      entry.memberId = member.id;
+      entry.memberName = member.name;
       entry.hours = 0;
       $location.path(`hours`);
     }
@@ -46,18 +47,25 @@
     .catch((err) => {
       console.log(err);
     });
-    this.click = (shopId) => {
-      this.entry.shopId = shopId;
-      shops.getItems(shopId)
-      .then((data) => {
-        this.entry.items = data.map(elem => {
+    this.click = (shop) => {
+      this.entry.shopId = shop.id;
+      this.entry.shopName = shop.name;
+      shops.getItems(shop.id)
+      .then((items) => {
+        this.entry.items = items.map(item => {
           return {
-            id: elem.id,
-            name: elem.name,
+            id: item.id,
+            name: item.name,
             quantity: 0
           };
         });
-        $location.path(data.length ? `items` : `final`);
+        if (items.length) {
+          $location.path(`items`);
+        } else {
+          entry.post(this.entry, () => {
+            $location.path(`final`);
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -76,13 +84,14 @@
       }
     };
     this.clickNext = () => {
-      $location.path(`final`);
+      entry.post(this.entry, () => {
+        $location.path(`final`);
+      });
     }
   })
   .controller('FinalController', function(entry, $location) {
     this.entry = entry;
     this.click = () => {
-      entry.post(this.entry);
       $location.path(`/`);
     };
   })

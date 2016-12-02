@@ -12,12 +12,18 @@
     const entryItemsServer = '/api/entries_items';
     return {
       memberId: 0,
+      memberName: ``,
       shopId: 0,
+      shopName: ``,
       hours: 0,
       items: [],
-      post: (entry) => {
+      post: (entry, callback) => {
         $http.post(entriesServer, { entry })
-        .then((res) => res.data)
+        .then((res) => {
+          if (callback) {
+            callback(res.data);
+          }
+        })
         .catch((err) => {
           console.log(err);
         })

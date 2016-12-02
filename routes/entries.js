@@ -52,6 +52,7 @@ router.post('/entries', /*ev(validations.post),*/ (req, res, next) => {
       ));
     })
     .then((result) => {
+      res.sendStatus(200);
     })
     .catch((err) => {
       next(err);

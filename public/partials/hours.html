@@ -5,7 +5,7 @@
 
 <div ng-controller="ShopsController as shopsController">
   <div ng-repeat="shop in shopsController.shops">
-    <a href="#" ng-click="shopsController.click(shop.id)">
+    <a href="#" ng-click="shopsController.click(shop)">
       <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
       {{ shop.name }}
     </a>

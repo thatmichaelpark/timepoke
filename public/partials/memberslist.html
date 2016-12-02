@@ -1,7 +1,7 @@
 <input type="text" name="search" value="" ng-model="membersListController.search">
 <div class="members-list">
-  <div ng-repeat="member in membersListController.members | filter: membersListController.search" class="stretchy-wrapper">
-    <a ng-click="membersListController.click(member.id)">
+  <div ng-repeat="member in membersListController.members | filter: membersListController.search | orderBy: 'name'" class="stretchy-wrapper">
+    <a ng-click="membersListController.click(member)">
       <img ng-src="{{ member.imageUrl }}" alt="{{ member.imageUrl }}" />
       <div class="circle-text">
         <span ng-repeat="name in member.name.split(' ')">{{ name }}</span>
