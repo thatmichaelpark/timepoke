@@ -1,5 +1,5 @@
-<input type="text" name="search" value="" ng-model="membersListController.search">
-<div class="members-list">
+<!-- <input type="text" name="search" value="" ng-model="membersListController.search"> -->
+<div class="members circles-list">
   <div ng-repeat="member in membersListController.members | filter: membersListController.search | orderBy: 'name'" class="stretchy-wrapper">
     <a ng-click="membersListController.click(member)">
       <img ng-src="{{ member.imageUrl }}" alt="{{ member.imageUrl }}" />

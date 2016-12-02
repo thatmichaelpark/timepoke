@@ -6,11 +6,17 @@ exports.seed = function(knex) {
     .then(() =>
       knex('shops')
         .insert([{
-          id: 1,
-          name: 'Litho'
+          name: 'Litho',
+          image_url: `img/litho.jpg`
         }, {
-          id: 2,
-          name: 'Foundry'
+          name: 'Foundry',
+          image_url: `img/foundry.jpg`
+        }, {
+          name: 'Darkroom',
+          image_url: `img/darkroom.jpg`
+        }, {
+          name: 'Screenprint',
+          image_url: `img/screenprint.jpg`
         }])
         .then(() =>
           knex.raw(

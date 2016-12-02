@@ -1,13 +1,24 @@
-<span>{{ hoursController.entry.memberId }}</span>
-<button type="button" name="button" ng-click="hoursController.click('-')">-</button>
-<span>{{ hoursController.entry.hours }}</span>
-<button type="button" name="button" ng-click="hoursController.click('+')">+</button>
+<div class="hours">
+  <div class="centered">
+    How many hours?
+  </div>
+  <div class="centered">
+    <span class="button" ng-click="hoursController.click('-')">-</span>
+    <span class="datum">{{ hoursController.entry.hours }}</span>
+    <span class="button" ng-click="hoursController.click('+')">+</span>
+  </div>
+</div>
 
-<div ng-controller="ShopsController as shopsController">
-  <div ng-repeat="shop in shopsController.shops">
-    <a href="#" ng-click="shopsController.click(shop)">
-      <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
-      {{ shop.name }}
-    </a>
+<div ng-controller="ShopsController as shopsController" class="shops">
+  <div class="centered">Select Shop</div>
+  <div class="circles-list">
+    <div ng-repeat="shop in shopsController.shops" class="stretchy-wrapper">
+      <a href="#" ng-click="shopsController.click(shop)">
+        <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
+        <div class="circle-text">
+          <span>{{ shop.name }}</span>
+        </div>
+      </a>
+    </div>
   </div>
 </div>

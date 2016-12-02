@@ -6,17 +6,23 @@ exports.seed = function(knex) {
     .then(() =>
       knex('members')
         .insert([{
-          id: 1,
           name: 'Alliser Thorne'
         }, {
-          id: 2,
           name: 'Myrcella Baratheon'
         }, {
-          id: 3,
           name: 'Syrio Forel'
         }, {
-          id: 4,
           name: 'Othell Yarwyck'
+        }, {
+          name: 'Nobody'
+        }, {
+          name: 'Osha'
+        }, {
+          name: 'Meryl Trant'
+        }, {
+          name: 'Kevan Lannister'
+        }, {
+          name: 'Podrick Payne'
         }])
         .then(() =>
           knex.raw(
