@@ -1,3 +1,4 @@
+<h1>Posted to database:</h1>
 <p>
   Member: {{ finalController.entry.memberName }} ({{ finalController.entry.memberId }})
 </p>
@@ -8,7 +9,7 @@
   Shop: {{ finalController.entry.shopName }} ({{ finalController.entry.shopId }})
 </p>
 
-<div ng-repeat="item in finalController.entry.items">
+<div ng-repeat="item in finalController.entry.items | filter: finalController.filterFn()">
   {{ item.name }}
   ({{ item.id }})
   qty: {{ item.quantity }}

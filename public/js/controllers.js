@@ -94,6 +94,9 @@
     this.click = () => {
       $location.path(`/`);
     };
+    this.filterFn = () => {
+      return (item) => item.quantity;
+    };
   })
   // .controller('UsersController', function(users) {
   //   const loadUsers = () => {

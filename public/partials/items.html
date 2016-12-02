@@ -3,7 +3,7 @@
 
   <div class="centered">
     <table>
-      <tr ng-repeat="item in itemsController.entry.items">
+      <tr ng-repeat="item in itemsController.entry.items | orderBy: 'name'">
         <td class="right">
           {{ item.name }}
         </td>
