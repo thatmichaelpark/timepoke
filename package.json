@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "resetdb": "knex migrate:rollback; knex migrate:latest; knex seed:run",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Michael Park <thatmichaelpark@gmail.com>",
