@@ -86,3 +86,28 @@ div.circle-text > span {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 5px;
 }
+
+table {
+  text-transform: none;
+}
+
+th, td {
+  padding: 5px;
+}
+.date {
+  background-color: #fde;
+}
+
+.member {
+  background-color: #efd;
+}
+
+.hours {
+  text-align: center;
+  background-color: #fed;
+}
+
+.qtys {
+  text-align: center;
+  background-color: #def;
+}

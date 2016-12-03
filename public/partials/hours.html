@@ -10,9 +10,9 @@
 </div>
 
 <div ng-controller="ShopsController as shopsController" class="shops">
-  <div class="centered">Select Shop</div>
+  <div class="centered">Select Workshop</div>
   <div class="circles-list">
-    <div ng-repeat="shop in shopsController.shops" class="stretchy-wrapper">
+    <div ng-repeat="shop in shopsController.shops | orderBy: 'name'" class="stretchy-wrapper">
       <a href="#" ng-click="shopsController.click(shop)">
         <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
         <div class="circle-text">

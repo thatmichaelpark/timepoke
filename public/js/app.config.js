@@ -25,6 +25,11 @@
       controller: 'FinalController',
       controllerAs: 'finalController'
     })
+    .when('/report', {
+      templateUrl: 'partials/report.html',
+      controller: 'ReportController',
+      controllerAs: 'reportController'
+    })
     // .when('/puzzlesform/:id', {
     //   templateUrl: 'partials/puzzlesform.html',
     //   controller: 'PuzzlesFormController',

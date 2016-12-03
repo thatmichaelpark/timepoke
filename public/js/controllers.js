@@ -98,6 +98,63 @@
       return (item) => item.quantity;
     };
   })
+  .controller(`ReportController`, function(report) {
+    const parseItems = (item) => {
+      const result = [];
+      const re = /[\\"]*([\w\s]+)[\\"]*,(\d+)/g;
+      let x;
+
+      while ((x = re.exec(item)) !== null) {
+        result.push({
+          name: x[1],
+          quantity: Number.parseInt(x[2])
+        });
+      }
+      return result;
+    };
+
+    report.get()
+    .then((entries) => {
+      entries.map(entry => {
+        entry.items = parseItems(entry.items);
+        return entry;
+      });
+
+      this.itemNames = [];
+      this.shopNames = [];
+      for (const entry of entries) {
+        if (this.shopNames.indexOf(entry.shopName) === -1) {
+          this.shopNames.push(entry.shopName);
+        }
+        for (const item of entry.items) {
+          if (this.itemNames.indexOf(item.name) === -1) {
+            this.itemNames.push(item.name);
+          }
+        }
+      }
+      this.shopNames.sort();
+      this.itemNames.sort();
+
+      const table = [];
+      for (const entry of entries) {
+        const row = {
+          date: entry.createdAt,
+          name: entry.memberName,
+          shopHours: Array(this.shopNames.length),
+          itemQtys: Array(this.itemNames.length)
+        };
+        row.shopHours[this.shopNames.indexOf(entry.shopName)] = entry.hours;
+        for (const item of entry.items) {
+          row.itemQtys[this.itemNames.indexOf(item.name)] = item.quantity;
+        }
+        table.push(row);
+      }
+      this.data = table;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  })
   // .controller('UsersController', function(users) {
   //   const loadUsers = () => {
   //     users.get()

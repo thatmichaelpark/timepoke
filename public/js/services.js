@@ -102,6 +102,23 @@
   app.factory('shops', shops);
   shops.$inject = ['$http'];
 
+  const report = function($http) {
+
+    return {
+      get: () =>
+        $http.get(`/api/entries/full`)
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          throw err;
+        }),
+    };
+  };
+
+  app.factory('report', report);
+  report.$inject = ['$http'];
+
   // const puzzles = function($http) {
   //   const server = 'http://localhost:8000/api/puzzles';
   //

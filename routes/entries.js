@@ -34,6 +34,44 @@ router.get(`/entries/`, (req, res, next) => {
   });
 });
 
+const bigQuery = `
+select entries.created_at, entries.id, member_name, name as shop_name, hours, items
+  from shops
+  inner join (
+    select entries.created_at, entries.id, name as member_name, entries.shop_id, hours, items
+      from members
+      inner join (
+        select entries.created_at, entries.id, entries.member_id, entries.shop_id, hours, array_agg((entries.name, entries.quantity)) as items
+          from (
+            select entries.created_at, entries.id, hours, member_id, entries.shop_id, items.name, items.quantity
+              from entries
+              left join (
+                 select *
+                   from items
+                   inner join entries_items
+                     on items.id = entries_items.item_id
+              ) items
+                on entries.id = items.entry_id
+          ) entries
+            group by entries.created_at, entries.id, entries.member_id, entries.shop_id, hours
+      ) entries
+        on members.id = entries.member_id
+  ) entries
+  on shops.id = entries.shop_id
+  order by entries.created_at
+`;
+
+router.get(`/entries/full`, (req, res, next) => {
+  knex.raw(bigQuery)
+  .then((data) => {
+    res.send(camelizeKeys(data.rows));
+  })
+  .catch((err) => {
+    next(err);
+  });
+});
+
+
 router.post('/entries', /*ev(validations.post),*/ (req, res, next) => {
   const { memberId, shopId, hours, items } = req.body.entry;
 

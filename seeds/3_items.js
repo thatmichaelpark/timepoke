@@ -23,6 +23,9 @@ exports.seed = function(knex) {
         }, {
           name: 'Ink',
           shop_id: 4
+        }, {
+          name: 'Squeegee',
+          shop_id: 4
         }])
         .then(() =>
           knex.raw(
