@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "knex migrate:rollback; knex migrate:latest; knex seed:run; node server.js",
     "resetdb": "knex migrate:rollback; knex migrate:latest; knex seed:run",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "Michael Park <thatmichaelpark@gmail.com>",
