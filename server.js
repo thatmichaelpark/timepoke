@@ -63,6 +63,8 @@ const shops = require('./routes/shops');
 app.use('/api', shops);
 const entries = require('./routes/entries');
 app.use('/api', entries);
+const items = require('./routes/items');
+app.use('/api', items);
 const token = require('./routes/token');
 app.use('/api', token);
 

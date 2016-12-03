@@ -23,35 +23,23 @@ const { checkAuth } = require('./middleware');
 //     });
 // });
 
-router.get(`/entries/`, (req, res, next) => {
-  knex('entries')
-  .select(`*`)
-  .then((data) => {
-    res.send(camelizeKeys(data));
+router.get(`/items/`, (req, res, next) => {
+  knex('items')
+  .select(`id`, `name`, `shop_id`)
+  .then((items) => {
+    res.send(camelizeKeys(items));
   })
   .catch((err) => {
     next(err);
   });
 });
 
-router.post('/entries', /*ev(validations.post),*/ (req, res, next) => {
-  const { memberId, shopId, hours, items } = req.body.entry;
-
-  knex('entries')
-    .insert(decamelizeKeys({ memberId, shopId, hours }), 'id')
-    .then((result) => {
-      const entryId = result[0];
-      return Promise.all(items.filter(item => item.quantity).map((item) =>
-        knex('entries_items')
-        .insert({
-          entry_id: entryId,
-          item_id: item.id,
-          quantity: item.quantity
-        })
-      ));
-    })
-    .then((result) => {
-      res.sendStatus(200);
+router.get('/items/byshopid/:shopId', (req, res, next) => {
+  knex('items')
+    .select('name', 'id')
+    .where('shop_id', req.params.shopId)
+    .then((items) => {
+      res.send(camelizeKeys(items));
     })
     .catch((err) => {
       next(err);

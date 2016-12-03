@@ -89,7 +89,7 @@
           throw err;
         }),
       getItems: (id) =>
-        $http.get(`${server}/${id}/items`)
+        $http.get(`/api/items/byshopid/${id}`)
         .then((res) =>
           res.data
         )
