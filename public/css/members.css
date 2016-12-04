@@ -87,13 +87,14 @@ div.circle-text > span {
   padding: 0 5px;
 }
 
-table {
+.report {
   text-transform: none;
 }
 
-th, td {
+.report th, .report td {
   padding: 5px;
 }
+
 .date {
   background-color: #fde;
 }
