@@ -1,6 +1,5 @@
 (function () {
   'use strict';
-  alert('hi');;;
 
   $('form').on('submit', function (event) {
     event.preventDefault();
