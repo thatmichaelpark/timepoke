@@ -1,0 +1,34 @@
+<div class="hours" ng-controller="HoursController as hoursController">
+  <div class="centered">
+    How many hours?
+  </div>
+  <div class="centered">
+    <span class="button" ng-click="hoursController.click('-')">-</span>
+    <span class="datum">{{ hoursController.entry.hours }}</span>
+    <span class="button" ng-click="hoursController.click('+')">+</span>
+  </div>
+</div>
+
+<div class="items" ng-controller="ItemsController as itemsController">
+  <div class="centered">Additional items for {{ itemsController.entry.shopName }}</div>
+
+  <div class="centered">
+    <table>
+      <tr ng-repeat="item in itemsController.entry.items | orderBy: 'name'">
+        <td class="right">
+          {{ item.name }}
+        </td>
+        <td>
+          <span class="button" ng-click="itemsController.click('-', item)">-</span
+          ><span class="datum">{{ item.quantity }}</span
+          ><span class="button" ng-click="itemsController.click('+', item)">+</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<nav>
+  <button type="button" name="back" ng-click="resourcesController.clickBack()">Back</button>
+  <button type="button" name="confirm" ng-click="resourcesController.clickConfirm()">Confirm</button>
+</nav>

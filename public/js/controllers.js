@@ -10,34 +10,6 @@
     //   $scope.$apply();
     // });
   // })
-  .controller('MembersListController', function(members, entry, $location) {
-    members.get()
-    .then((data) => {
-      this.members = data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    this.members = [];
-    this.click = (member) => {
-      entry.memberId = member.id;
-      entry.memberName = member.name;
-      entry.hours = 0;
-      $location.path(`hours`);
-    }
-  })
-  .controller('HoursController', function(entry) {
-    this.entry = entry;
-    this.click = (plusMinus) => {
-      if (plusMinus === `+`) {
-        ++this.entry.hours;
-      } else { // -
-        if (this.entry.hours) {
-          --this.entry.hours;
-        }
-      }
-    }
-  })
   .controller('ShopsController', function(shops, entry, $location) {
     this.entry = entry;
     shops.get()
@@ -50,6 +22,7 @@
     this.click = (shop) => {
       this.entry.shopId = shop.id;
       this.entry.shopName = shop.name;
+      this.entry.hours = 0;
       shops.getItems(shop.id)
       .then((items) => {
         this.entry.items = items.map(item => {
@@ -59,17 +32,35 @@
             quantity: 0
           };
         });
-        if (items.length) {
-          $location.path(`items`);
-        } else {
-          entry.post(this.entry, () => {
-            $location.path(`final`);
-          });
-        }
+        $location.path(`resources`);
       })
       .catch((err) => {
         console.log(err);
       });
+    }
+    this.clickBack = () => {
+      $location.path(`/`);
+      console.log('back');
+    };
+  })
+  .controller(`ResourcesController`, function($location) {
+    this.clickBack = () => {
+      $location.path(`shops`);
+    };
+    this.clickConfirm = () => {
+      $location.path(`memberslist`);
+    }
+  })
+  .controller('HoursController', function(entry) {
+    this.entry = entry;
+    this.click = (plusMinus) => {
+      if (plusMinus === `+`) {
+        ++this.entry.hours;
+      } else { // -
+        if (this.entry.hours) {
+          --this.entry.hours;
+        }
+      }
     }
   })
   .controller('ItemsController', function(entry, $location) {
@@ -89,13 +80,31 @@
       });
     }
   })
-  .controller('FinalController', function(entry, $location) {
-    this.entry = entry;
-    this.click = () => {
-      $location.path(`/`);
+  .controller('MembersListController', function(members, entry, $location) {
+    members.get()
+    .then((data) => {
+      this.members = data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    this.members = [];
+    this.click = (member) => {
+      entry.memberId = member.id;
+      entry.memberName = member.name;
+      $location.path(`summary`);
+    }
+    this.clickBack = () => {
+      $location.path(`resources`);
     };
+  })
+  .controller('SummaryController', function(entry, $location) {
+    this.entry = entry;
     this.filterFn = () => {
       return (item) => item.quantity;
+    };
+    this.clickBack = () => {
+      $location.path(`memberslist`);
     };
   })
   .controller(`ReportController`, function(report) {

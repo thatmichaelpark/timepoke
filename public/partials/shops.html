@@ -1,15 +1,4 @@
-<div class="hours">
-  <div class="centered">
-    How many hours?
-  </div>
-  <div class="centered">
-    <span class="button" ng-click="hoursController.click('-')">-</span>
-    <span class="datum">{{ hoursController.entry.hours }}</span>
-    <span class="button" ng-click="hoursController.click('+')">+</span>
-  </div>
-</div>
-
-<div ng-controller="ShopsController as shopsController" class="shops">
+<div class="shops">
   <div class="centered">Select Workshop</div>
   <div class="circles-list">
     <div ng-repeat="shop in shopsController.shops | orderBy: 'name'" class="stretchy-wrapper">
@@ -22,3 +11,7 @@
     </div>
   </div>
 </div>
+
+<nav>
+  <button type="button" name="back" ng-click="shopsController.clickBack()">Back</button>
+</nav>

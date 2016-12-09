@@ -37,7 +37,7 @@ const originalNames = [{
 }];
 
 const names = [];
-for (let i = 0; i < 100; ++i) {
+for (let i = 0; i < 500; ++i) {
   names.push({ name: Bork() + ' ' + Bork() });
 }
 

@@ -1,0 +1,21 @@
+<h1>About to post to database:</h1>
+<p>
+  Member: {{ summaryController.entry.memberName }} ({{ summaryController.entry.memberId }})
+</p>
+<p>
+  Hours: {{ summaryController.entry.hours }}
+</p>
+<p>
+  Shop: {{ summaryController.entry.shopName }} ({{ summaryController.entry.shopId }})
+</p>
+
+<div ng-repeat="item in summaryController.entry.items | filter: summaryController.filterFn() | orderBy: 'name'">
+  {{ item.name }}
+  ({{ item.id }})
+  qty: {{ item.quantity }}
+</div>
+
+<nav>
+  <button type="button" name="back" ng-click="summaryController.clickBack()">Back</button>
+  <button type="button" name="confirm" ng-click="summaryController.clickConfirm()">Confirm</button>
+</nav>
