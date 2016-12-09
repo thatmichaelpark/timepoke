@@ -40,7 +40,6 @@
     }
     this.clickBack = () => {
       $location.path(`/`);
-      console.log('back');
     };
   })
   .controller(`ResourcesController`, function($location) {
@@ -74,11 +73,6 @@
         }
       }
     };
-    this.clickNext = () => {
-      entry.post(this.entry, () => {
-        $location.path(`final`);
-      });
-    }
   })
   .controller('MembersListController', function(members, entry, $location) {
     members.get()
@@ -106,8 +100,13 @@
     this.clickBack = () => {
       $location.path(`memberslist`);
     };
+    this.clickConfirm = () => {
+      entry.post(this.entry, () => {
+        $location.path(`report`);
+      });
+    }
   })
-  .controller(`ReportController`, function(report) {
+  .controller(`ReportController`, function(report, $location) {
     const parseItems = (item) => {
       const result = [];
       const re = /[\\"]*([\w\s]+)[\\"]*,(\d+)/g;
@@ -163,6 +162,9 @@
     .catch((err) => {
       console.log(err);
     });
+    this.clickConfirm = () => {
+      $location.path(`/`);
+    }
   })
   // .controller('UsersController', function(users) {
   //   const loadUsers = () => {
