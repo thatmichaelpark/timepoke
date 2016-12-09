@@ -9,6 +9,7 @@ exports.up = function(knex) {
       .references('id')
       .inTable('shops')
       .onDelete('CASCADE');
+    table.boolean('active').defaultTo(true);
     table.timestamps(true, true);
   });
 };

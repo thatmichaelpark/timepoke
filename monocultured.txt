@@ -1,0 +1,64 @@
+Page 0: Login Screen
+_login_
+_password_
+[OK]
+
+Page 1: Start Screen
+[Touch to start]
+
+Page 2: Pick Workshop
+[Brons & Gjuteri]
+[Elektronik]
+...
+(no [Back] specified)
+
+Page 3: Hours & Resources
+Hours in the shop [+] N [-]
+Shell Form        [+] N [-]
+Kiln              [+] N [-]
+[Back][Confirm]
+
+Page 4: Identity
+(List of shop members)
+[Tyrion Lannister]
+[Jaime Lannister]
+...
+[Back][Confirm]
+
+Page 5: Summary
+Arya Stark
+N hours in SHOP
+N of RESOURCE1
+N of RESOURCE2
+[Back][Confirm]
+
+Page 6: Total User Summary
+NAME
+Total N hours
+SHOP1
+N hours
+N of RESOURCE1
+N of RESOURCE2
+SHOP2
+N hours
+N of RESOURCE1
+[Go to Page 1]
+
+Pages 2-6 have 1 min. timeout, then return to page 1.
+
+Tables
+logins - admin/non-admin.
+members - name, image, active/inactive. (Email? Other info)
+shops - name, image, active/inactive.
+items -
+
+/admin
+  add, edit, or deactivate logins; change passwords
+  add, edit, or deactivate members; assign members to shops (or vice versa?)
+  add, edit, or deactivate shops; add, edit, or deactivate items (per shop)
+  (edit time entries?)
+  generate reports
+
+
+  ÅÄÖ
+  åäö

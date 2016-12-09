@@ -5,6 +5,7 @@ exports.up = function(knex) {
     table.increments();
     table.string('name').notNullable().defaultTo('');
     table.string('image_url').defaultTo('img/shopdefault.jpeg');
+    table.boolean('active').defaultTo(true);
     table.timestamps(true, true);
   });
 };
