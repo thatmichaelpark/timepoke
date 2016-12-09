@@ -35,6 +35,19 @@ router.get('/members/:id', (req, res, next) => {
     });
 });
 
+router.get('/members/byshopid/:shopId', (req, res, next) => {
+  knex('members_shops')
+    .where('shop_id', req.params.shopId)
+    .innerJoin(`members`, `members.id`, `member_id`)
+    .select(`members.id`, 'name', 'image_url')
+    .then((items) => {
+      res.send(camelizeKeys(items));
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
   const memberName = req.body.memberName.trim().replace(/\s+/g, ' ');
   const imageUrl = req.body.imageUrl;

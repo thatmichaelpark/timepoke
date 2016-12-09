@@ -46,6 +46,14 @@
         .catch((err) => {
           throw err;
         }),
+      getByShopId: (shopId) =>
+        $http.get(`/api/members/byshopid/${shopId}`)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        }),
       // delete: (id) =>
       //   $http.delete(`${server}/${id}`)
       //   .then((res) =>
@@ -88,14 +96,14 @@
         .catch((err) => {
           throw err;
         }),
-      getItems: (id) =>
-        $http.get(`/api/items/byshopid/${id}`)
+      getItems: (shopId) =>
+        $http.get(`/api/items/byshopid/${shopId}`)
         .then((res) =>
           res.data
         )
         .catch((err) => {
           throw err;
-        }),
+        })
     };
   };
 

@@ -75,7 +75,7 @@
     };
   })
   .controller('MembersListController', function(members, entry, $location) {
-    members.get()
+    members.getByShopId(entry.shopId)
     .then((data) => {
       this.members = data;
     })
