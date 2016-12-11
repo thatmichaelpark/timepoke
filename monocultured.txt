@@ -58,7 +58,3 @@ items -
   add, edit, or deactivate shops; add, edit, or deactivate items (per shop)
   (edit time entries?)
   generate reports
-
-
-  ÅÄÖ
-  åäö

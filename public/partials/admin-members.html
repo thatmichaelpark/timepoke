@@ -1,0 +1,40 @@
+<form class="" ng-show="membersController.editing">
+  {{ membersController.form.id || 'New Member' }}
+  <input type="text" name="name" ng-model="membersController.form.name">
+  <input type="text" name="imageUrl" ng-model="membersController.form.imageUrl">
+  <input type="checkbox" name="active" ng-model="membersController.form.active">
+  <input type="submit">
+</form>
+<div class="panel panel-default">
+  <div class="panel-heading">Members</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="search-label">Search</span>
+          <input type="text" ng-model="membersController.searchString" class="form-control" aria-describedby="search-label">
+        </div>
+      </div><!-- /.col-lg-6 -->
+      <div class="col-lg-6">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="membersController.showActiveOnly">Hide inactive members
+          </label>
+        </div>
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <th>Name</th>
+      <th>Active?</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="member in membersController.members | filter: membersController.filter() | orderBy: 'name'">
+        <td>{{ member.name }}</td>
+        <td>{{ member.active }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

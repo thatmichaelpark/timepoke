@@ -1,1 +1,48 @@
-ADMIN
+<!DOCTYPE html>
+<html ng-app="adminApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+  </head>
+  <body ng-controller="AdminController as adminController" class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav" role="pilllist">
+          <li role="presentation"><a href="#members" aria-controls="members" role="pill" data-toggle="pill">Members</a></li>
+          <li role="presentation"><a href="#shops" aria-controls="shops" role="pill" data-toggle="pill">Shops</a></li>
+          <li role="presentation"><a href="#logins" aria-controls="logins" role="pill" data-toggle="pill">Logins</a></li>
+          <li role="presentation"><a href="#reports" aria-controls="reports" role="pill" data-toggle="pill">Reports</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li role="presentation">
+            <a aria-controls="logout" ng-click="adminController.logout()">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main ng-view>
+    </main>
+
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/bootstrap.min.js"></script>
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/angular-route.js"></script>
+    <script src="vendor/js/angular-animate.min.js"></script>
+    <script>
+    (function() {
+      'use strict';
+
+      angular.module(`monoculturedApp`, []);
+      angular.module('adminApp', [`ngRoute`, 'ngAnimate', `monoculturedApp`]);
+    })();
+    </script>
+    <script src="js/admin-controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/admin-app.config.js"></script>
+  </body>
+</html>

@@ -14,7 +14,7 @@ const { checkAuth } = require('./middleware');
 
 router.get('/members', (req, res, next) => {
   knex('members')
-    .select('name', 'id', 'image_url')
+    .select('name', 'id', 'image_url', 'active')
     .then((members) => {
       res.send(camelizeKeys(members));
     })
@@ -59,13 +59,14 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
       }
 
       return knex('members')
-        .insert(decamelizeKeys({ memberName, imageUrl }), '*');
+        .insert(decamelizeKeys({ memberName, imageUrl, active }), '*');
     })
     .then((result) => {
       res.send({
+        id: result[0].id,
         memberName: result[0].member_name,
         imageUrl: result[0].image_url,
-        id: result[0].id
+        active: result[0].active
       });
     })
     .catch((err) => {
@@ -74,15 +75,11 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
 });
 
 router.patch('/members/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
-  if (req.token.member_name !== 'admin') {
-    return next(boom.create(401, 'Not logged in as admin'));
-  }
-
   knex('members')
-  .update({ member_name: req.body.member_name }, ['id', 'member_name'])
+  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'active'])
   .where('id', req.params.id)
   .then((members) => {
-    res.send(members[0]);
+    res.send(camelizeKeys(members[0]));
   })
   .catch((err) => {
     next(err);

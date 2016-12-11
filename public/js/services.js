@@ -47,37 +47,21 @@
           throw err;
         }),
       getByShopId: (shopId) =>
-        $http.get(`/api/members/byshopid/${shopId}`)
+        $http.get(`${server}/byshopid/${shopId}`)
         .then((res) =>
           res.data
         )
         .catch((err) => {
           throw err;
         }),
-      // delete: (id) =>
-      //   $http.delete(`${server}/${id}`)
-      //   .then((res) =>
-      //     res.data
-      //   )
-      //   .catch((err) => {
-      //     throw err;
-      //   }),
-      // patch: (id, data) =>
-      //   $http.patch(`${server}/${id}`, data)
-      //   .then((res) =>
-      //     res.data
-      //   )
-      //   .catch((err) => {
-      //     throw err;
-      //   }),
-      // login: (username, password) =>
-      //   $http.post(tokenServer, { username, password })
-      //   .then((res) =>
-      //     res.data
-      //   )
-      //   .catch((err) => {
-      //     throw err;
-      //   })
+      patch: (id, data) =>
+        $http.patch(`${server}/${id}`, data)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        })
     };
   };
 
