@@ -21,6 +21,7 @@
         this.members = data;
       })
       .catch(err => {
+        alert(err.statusText);
         console.log(err);
       });
 
@@ -48,13 +49,17 @@
         { loginName: this.searchString };
     };
 
-    logins.get()
+    this.getLogins = () => {
+      logins.get()
       .then(data => {
         this.logins = data;
       })
       .catch(err => {
-        console.log(err);
+        alert(err.statusText);
       });
+    }
+
+    this.getLogins();
 
     this.click = (login) => {
       if (login) {
@@ -69,18 +74,14 @@
 
     this.save = (data) => {
       $(`#login-edit-modal`).modal('hide');
-      if (this.form.id) {
-
-      }
-      else {
-        logins.post(this.form)
-        .then((res) => {
-          console.log('res', res);
-        })
-        .catch((err) => {
-          console.log('err', err);
-        });
-      }
+      (this.form.id ? logins.patch(this.form) : logins.post(this.form))
+      .then((res) => {
+        this.getLogins();
+      })
+      .catch((err) => {
+        alert(err.statusText);
+        console.log(err);
+      });
     };
   });
 

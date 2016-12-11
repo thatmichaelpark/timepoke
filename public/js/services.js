@@ -107,6 +107,11 @@
         $http.post(server, data)
         .then((res) =>
           res.data
+        ),
+      patch: (data) =>
+        $http.patch(`${server}/${data.id}`, data)
+        .then((res) =>
+          res.data
         )
     };
   };

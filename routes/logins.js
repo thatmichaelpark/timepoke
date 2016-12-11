@@ -56,9 +56,18 @@ router.post('/logins', /*ev(validations.post),*/ (req, res, next) => {
 });
 
 router.patch('/logins/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
-  knex('logins')
-  .update(decamelizeKeys(req.body), ['id', 'login_name', 'is_admin', 'is_active'])
-  .where('id', req.params.id)
+  const password = req.body.password ? req.body.password.trim() : `dummy password`;
+
+  bcrypt.hash(password, 12)
+  .then((hashedPassword) => {
+    if (req.body.password) {
+      delete req.body.password;
+      req.body.hashedPassword = hashedPassword;
+    }
+    return knex('logins')
+      .update(decamelizeKeys(req.body), ['id', 'login_name', 'is_admin', 'is_active'])
+      .where('id', req.params.id);
+  })
   .then((logins) => {
     res.send(camelizeKeys(logins[0]));
   })
