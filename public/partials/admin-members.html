@@ -29,7 +29,7 @@
     <tbody>
       <tr ng-repeat="member in membersController.members | filter: membersController.filter() | orderBy: 'name'" ng-click="membersController.click(member)">
         <td>{{ member.name }}</td>
-        <td>{{ member.active }}</td>
+        <td>{{ member.isActive }}</td>
       </tr>
     </tbody>
   </table>
@@ -57,7 +57,7 @@
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" ng-model="membersController.form.active">Active
+              <input type="checkbox" ng-model="membersController.form.isActive">Active
             </label>
           </div>
         </form>

@@ -102,10 +102,12 @@
         $http.get(server)
         .then((res) =>
           res.data
+        ),
+      post: (data) =>
+        $http.post(server, data)
+        .then((res) =>
+          res.data
         )
-        .catch((err) => {
-          throw err;
-        })
     };
   };
 

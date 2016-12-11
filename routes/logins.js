@@ -25,15 +25,22 @@ router.get('/logins', (req, res, next) => {
 
 router.post('/logins', /*ev(validations.post),*/ (req, res, next) => {
   const loginName = req.body.loginName.trim().replace(/\s+/g, ' ');
+  const password = req.body.password.trim();
+  const { isAdmin, isActive } = req.body;
 
   knex('logins').where('login_name', 'ilike', loginName)
     .then((logins) => {
       if (logins.length > 0) {
         throw boom.create(400, 'That login is already in use');
       }
-
+      return bcrypt.hash(password, 12);
+    })
+    .then((hashedPassword) => {
       return knex('logins')
-        .insert(decamelizeKeys({ loginName, imageUrl, isAdmin, isActive }), '*');
+        .insert(decamelizeKeys(
+          password ? { loginName, hashedPassword, isAdmin, isActive }
+                   : { loginName, isAdmin, isActive }
+        ), '*');
     })
     .then((result) => {
       res.send({
@@ -50,7 +57,7 @@ router.post('/logins', /*ev(validations.post),*/ (req, res, next) => {
 
 router.patch('/logins/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
   knex('logins')
-  .update(decamelizeKeys(req.body), ['id', 'login_name', 'isAdmin', 'isActive'])
+  .update(decamelizeKeys(req.body), ['id', 'login_name', 'is_admin', 'is_active'])
   .where('id', req.params.id)
   .then((logins) => {
     res.send(camelizeKeys(logins[0]));

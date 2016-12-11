@@ -29,7 +29,7 @@
         const { id, name, imageUrl, isActive } = member;
         this.form = { id, name, imageUrl, isActive };
       } else {
-        this.form = {};
+        this.form = { isActive: true };
       }
       $(`#member-edit-modal`).modal({backdrop: `static`});
     };
@@ -60,15 +60,27 @@
       if (login) {
         const { id, loginName, isAdmin, isActive } = login;
         this.form = { id, loginName, isAdmin, isActive };
-      } else {
-        this.form = {};
+      }
+      else {
+        this.form = { isAdmin: false, isActive: true };
       }
       $(`#login-edit-modal`).modal({backdrop: `static`});
     };
 
-    this.save = () => {
+    this.save = (data) => {
       $(`#login-edit-modal`).modal('hide');
-      console.log(this.form);
+      if (this.form.id) {
+
+      }
+      else {
+        logins.post(this.form)
+        .then((res) => {
+          console.log('res', res);
+        })
+        .catch((err) => {
+          console.log('err', err);
+        });
+      }
     };
   });
 
