@@ -5,7 +5,7 @@ exports.up = function(knex) {
     table.increments();
     table.string('name').notNullable().defaultTo('');
     table.string('image_url').defaultTo('img/memberdefault.jpeg');
-    table.boolean('active').defaultTo(true);
+    table.boolean('is_active').defaultTo(true);
     table.specificType('hashed_password',
       'char(60)').notNullable().defaultTo('');
     table.timestamps(true, true);

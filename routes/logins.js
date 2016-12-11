@@ -14,7 +14,7 @@ const { checkAuth } = require('./middleware');
 
 router.get('/logins', (req, res, next) => {
   knex('logins')
-    .select('login_name', 'id', 'active')
+    .select('id', 'login_name', 'is_admin', 'is_active')
     .then((logins) => {
       res.send(camelizeKeys(logins));
     })
@@ -33,13 +33,14 @@ router.post('/logins', /*ev(validations.post),*/ (req, res, next) => {
       }
 
       return knex('logins')
-        .insert(decamelizeKeys({ loginName, imageUrl, active }), '*');
+        .insert(decamelizeKeys({ loginName, imageUrl, isAdmin, isActive }), '*');
     })
     .then((result) => {
       res.send({
         id: result[0].id,
         loginName: result[0].login_name,
-        active: result[0].active
+        isAdmin: result[0].is_admin,
+        isActive: result[0].is_active
       });
     })
     .catch((err) => {
@@ -49,7 +50,7 @@ router.post('/logins', /*ev(validations.post),*/ (req, res, next) => {
 
 router.patch('/logins/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
   knex('logins')
-  .update(decamelizeKeys(req.body), ['id', 'login_name', 'active'])
+  .update(decamelizeKeys(req.body), ['id', 'login_name', 'isAdmin', 'isActive'])
   .where('id', req.params.id)
   .then((logins) => {
     res.send(camelizeKeys(logins[0]));

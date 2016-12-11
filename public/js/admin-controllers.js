@@ -12,7 +12,7 @@
 
     this.filter = () => {
       return this.showActiveOnly ?
-        { name: this.searchString, active: true } :
+        { name: this.searchString, isActive: true } :
         { name: this.searchString };
     };
 
@@ -26,8 +26,8 @@
 
     this.click = (member) => {
       if (member) {
-        const { id, name, imageUrl, active } = member;
-        this.form = { id, name, imageUrl, active };
+        const { id, name, imageUrl, isActive } = member;
+        this.form = { id, name, imageUrl, isActive };
       } else {
         this.form = {};
       }
@@ -44,7 +44,7 @@
 
     this.filter = () => {
       return this.showActiveOnly ?
-        { loginName: this.searchString, active: true } :
+        { loginName: this.searchString, isActive: true } :
         { loginName: this.searchString };
     };
 
@@ -58,8 +58,8 @@
 
     this.click = (login) => {
       if (login) {
-        const { id, loginName, active } = login;
-        this.form = { id, loginName, active };
+        const { id, loginName, isAdmin, isActive } = login;
+        this.form = { id, loginName, isAdmin, isActive };
       } else {
         this.form = {};
       }

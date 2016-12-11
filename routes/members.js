@@ -14,7 +14,7 @@ const { checkAuth } = require('./middleware');
 
 router.get('/members', (req, res, next) => {
   knex('members')
-    .select('name', 'id', 'image_url', 'active')
+    .select('id', 'name', 'image_url', 'is_active')
     .then((members) => {
       res.send(camelizeKeys(members));
     })
@@ -38,8 +38,9 @@ router.get('/members/:id', (req, res, next) => {
 router.get('/members/byshopid/:shopId', (req, res, next) => {
   knex('members_shops')
     .where('shop_id', req.params.shopId)
+    .where(`is_active`, true) // active members only
     .innerJoin(`members`, `members.id`, `member_id`)
-    .select(`members.id`, 'name', 'image_url')
+    .select(`members.id`, 'name', 'image_url', 'is_active')
     .then((items) => {
       res.send(camelizeKeys(items));
     })
@@ -59,14 +60,14 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
       }
 
       return knex('members')
-        .insert(decamelizeKeys({ memberName, imageUrl, active }), '*');
+        .insert(decamelizeKeys({ memberName, imageUrl, isActive }), '*');
     })
     .then((result) => {
       res.send({
         id: result[0].id,
         memberName: result[0].member_name,
         imageUrl: result[0].image_url,
-        active: result[0].active
+        isActive: result[0].isActive
       });
     })
     .catch((err) => {
@@ -76,7 +77,7 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
 
 router.patch('/members/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
   knex('members')
-  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'active'])
+  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'isActive'])
   .where('id', req.params.id)
   .then((members) => {
     res.send(camelizeKeys(members[0]));

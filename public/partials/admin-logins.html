@@ -24,12 +24,14 @@
   <table class="table table-hover">
     <thead>
       <th>Login</th>
+      <th>Admin?</th>
       <th>Active?</th>
     </thead>
     <tbody>
       <tr ng-repeat="login in loginsController.logins | filter: loginsController.filter() | orderBy: 'loginName'" ng-click="loginsController.click(login)">
         <td>{{ login.loginName }}</td>
-        <td>{{ login.active }}</td>
+        <td>{{ login.isAdmin }}</td>
+        <td>{{ login.isActive }}</td>
       </tr>
     </tbody>
   </table>
@@ -51,13 +53,14 @@
             <label for="name">Login</label>
             <input type="text" class="form-control" id="name" ng-model="loginsController.form.loginName">
           </div>
-          <div class="form-group">
-            <label for="imageUrl">Image URL</label>
-            <input type="text" class="form-control" id="imageUrl" ng-model="loginsController.form.imageUrl">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="loginsController.form.isAdmin">Admin
+            </label>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" ng-model="loginsController.form.active">Active
+              <input type="checkbox" ng-model="loginsController.form.isActive">Active
             </label>
           </div>
         </form>

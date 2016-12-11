@@ -38,7 +38,7 @@ const originalNames = [{
 
 const names = [];
 for (let i = 0; i < 500; ++i) {
-  names.push({ name: Bork() + ' ' + Bork(), active: Math.random() < 0.5 });
+  names.push({ name: Bork() + ' ' + Bork(), is_active: Math.random() < 0.5 });
 }
 
 exports.seed = function(knex) {
