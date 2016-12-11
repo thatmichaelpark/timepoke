@@ -8,7 +8,6 @@
     };
   })
   .controller(`MembersController`, function(members) {
-    this.editing = false;
     this.showActiveOnly = true;
     this.filter = () => {
       return this.showActiveOnly ?
@@ -16,16 +15,23 @@
         { name: this.searchString };
     };
     members.get().then(data => {
-      console.log('members controller');
       this.members = data;
     })
     .catch(err => {
       console.log(err);
     });
     this.click = (member) => {
-      const { id, name, imageUrl, active } = member;
-      this.form = { id, name, imageUrl, active };
-      this.editing = !this.editing;
+      if (member) {
+        const { id, name, imageUrl, active } = member;
+        this.form = { id, name, imageUrl, active };
+      } else {
+        this.form = {};
+      }
+      $(`#member-edit-modal`).modal({backdrop: `static`});
+    };
+    this.submit = () => {
+      $(`#member-edit-modal`).modal('hide');
+      console.log(this.form);
     };
   });
 
