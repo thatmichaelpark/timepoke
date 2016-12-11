@@ -94,6 +94,24 @@
   app.factory('shops', shops);
   shops.$inject = ['$http'];
 
+  const logins = function($http) {
+    const server = '/api/logins';
+
+    return {
+      get: () =>
+        $http.get(server)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        })
+    };
+  };
+
+  app.factory('logins', logins);
+  logins.$inject = ['$http'];
+
   const report = function($http) {
 
     return {

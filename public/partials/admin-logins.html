@@ -1,1 +1,72 @@
-<h1>Manage Logins</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">Logins</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="search-label">Search</span>
+          <input type="text" ng-model="loginsController.searchString" class="form-control" aria-describedby="search-label">
+        </div>
+      </div><!-- /.col-lg-6 -->
+      <div class="col-lg-3">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="loginsController.showActiveOnly">Hide inactive logins
+          </label>
+        </div>
+      </div><!-- /.col-lg-3 -->
+      <div class="col-lg-3">
+        <button type="button" class="btn btn-primary" ng-click="loginsController.click(null)">Add New Login</button>
+      </div><!-- /.col-lg-3 -->
+    </div><!-- /.row -->
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <th>Login</th>
+      <th>Active?</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="login in loginsController.logins | filter: loginsController.filter() | orderBy: 'loginName'" ng-click="loginsController.click(login)">
+        <td>{{ login.loginName }}</td>
+        <td>{{ login.active }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="login-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          {{ loginsController.form.id ? 'Login ' + loginsController.form.id : 'New Login'}}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Login</label>
+            <input type="text" class="form-control" id="name" ng-model="loginsController.form.loginName">
+          </div>
+          <div class="form-group">
+            <label for="imageUrl">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" ng-model="loginsController.form.imageUrl">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="loginsController.form.active">Active
+            </label>
+          </div>
+        </form>
+        <img ng-src="{{ loginsController.form.imageUrl }}" alt="" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="loginsController.save()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

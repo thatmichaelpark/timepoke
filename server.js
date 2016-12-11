@@ -65,6 +65,8 @@ const entries = require('./routes/entries');
 app.use('/api', entries);
 const items = require('./routes/items');
 app.use('/api', items);
+const logins = require('./routes/logins');
+app.use('/api', logins);
 const token = require('./routes/token');
 app.use('/api', token);
 

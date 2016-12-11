@@ -38,6 +38,38 @@
       $(`#member-edit-modal`).modal('hide');
       console.log(this.form);
     };
+  })
+  .controller(`LoginsController`, function(logins) {
+    this.showActiveOnly = true;
+
+    this.filter = () => {
+      return this.showActiveOnly ?
+        { loginName: this.searchString, active: true } :
+        { loginName: this.searchString };
+    };
+
+    logins.get()
+      .then(data => {
+        this.logins = data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    this.click = (login) => {
+      if (login) {
+        const { id, loginName, active } = login;
+        this.form = { id, loginName, active };
+      } else {
+        this.form = {};
+      }
+      $(`#login-edit-modal`).modal({backdrop: `static`});
+    };
+
+    this.save = () => {
+      $(`#login-edit-modal`).modal('hide');
+      console.log(this.form);
+    };
   });
 
   // .controller('ShopsController', function(shops, entry, $location) {
