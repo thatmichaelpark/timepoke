@@ -1,15 +1,18 @@
 <!-- <input type="text" name="search" value="" ng-model="membersListController.search"> -->
-<div class="members circles-list">
-  <div ng-repeat="member in membersListController.members | filter: membersListController.search | orderBy: 'name'" class="stretchy-wrapper">
-    <a ng-click="membersListController.click(member)">
-      <img ng-src="{{ member.imageUrl }}" alt="{{ member.imageUrl }}" />
-      <div class="circle-text">
-        <span ng-repeat="name in member.name.split(' ')">{{ name }}</span>
-      </div>
-    </a>
+<div class="members">
+  <div class="centered">Who are you?</div>
+  <div class="circles-list">
+    <div ng-repeat="member in membersListController.members | filter: membersListController.search | orderBy: 'name'" class="stretchy-wrapper">
+      <a ng-click="membersListController.click(member)">
+        <img ng-src="{{ member.imageUrl }}" alt="{{ member.imageUrl }}" />
+        <div class="circle-text">
+          <span ng-repeat="name in member.name.split(' ')">{{ name }}</span>
+        </div>
+      </a>
+    </div>
   </div>
-</div>
 
-<nav>
-  <button type="button" name="back" ng-click="membersListController.clickBack()">Back</button>
-</nav>
+  <nav>
+    <button type="button" name="back" ng-click="membersListController.clickBack()">Back</button>
+  </nav>
+</div>

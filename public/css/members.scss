@@ -13,13 +13,14 @@ body, button {
 $nav-height: 70px;
 
 @mixin full($background-color) {
-  padding-bottom: $nav-height;
   background-color: $background-color;
   bottom: 0;
   left: 0;
+  overflow: auto;
+  padding-bottom: $nav-height;
+  position: fixed;
   right: 0;
   top: 0;
-  position: fixed;
 }
 
 .start {
@@ -68,9 +69,6 @@ nav {
 
   color: $foreground-color;
   font-size: 4rem;
-  overflow: auto;
-  padding-bottom: $nav-height;
-  position: fixed;
   button, nav {
     background-color: $background-color;
     color: $foreground-color;
@@ -84,10 +82,7 @@ nav {
 
   color: $foreground-color;
   font-size: 4rem;
-  overflow: auto;
-  padding-bottom: $nav-height;
   padding-top: 100px;
-  position: fixed;
   button, nav {
     background-color: $background-color;
     color: $foreground-color;
@@ -111,26 +106,16 @@ nav {
   justify-content: center;
 }
 
-.right {
-  display: flex;
-  justify-content: flex-end;
-}
-
-div.members {
-  background-color: lightsteelblue;
-}
-
-div.hours {
-  // background-color: green;
+.members {
+  $background-color: lightsteelblue;
+  $foreground-color: white;
+  @include full($background-color);
+  color: $foreground-color;
   font-size: 4rem;
-  // color: white;
-  padding: 40px;
-}
-
-div.items {
-  background-color: skyblue;
-  font-size: 4rem;
-  color: white;
+  button, nav {
+    background-color: $background-color;
+    color: $foreground-color;
+  }
 }
 
 div.circles-list {
@@ -141,8 +126,8 @@ div.circles-list {
 
 div.stretchy-wrapper {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   margin: 10px;
 }
 div.stretchy-wrapper img {
