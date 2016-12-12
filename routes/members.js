@@ -24,26 +24,12 @@ router.get('/members', (req, res, next) => {
 });
 
 // get a member's shops:
-router.get('/members/shops/:id', (req, res, next) => {
+router.get('/members/:id/shops', (req, res, next) => {
   knex('members_shops')
     .select('shop_id')
     .where('member_id', req.params.id)
     .then((shops) => {
       res.send(camelizeKeys(shops));
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.get('/members/byshopid/:shopId', (req, res, next) => {
-  knex('members_shops')
-    .where('shop_id', req.params.shopId)
-    .where(`is_active`, true) // active members only
-    .innerJoin(`members`, `members.id`, `member_id`)
-    .select(`members.id`, 'name', 'image_url', 'is_active')
-    .then((items) => {
-      res.send(camelizeKeys(items));
     })
     .catch((err) => {
       next(err);

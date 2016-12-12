@@ -23,6 +23,22 @@ router.get('/shops', (req, res, next) => {
     });
 });
 
+// get a shop's members (incl. members' names)
+router.get('/shops/:id/members/', (req, res, next) => {
+  knex('members_shops')
+    .where('shop_id', req.params.id)
+    .where(`is_active`, true) // active members only
+    .innerJoin(`members`, `members.id`, `member_id`)
+    .select(`members.id`, 'name', 'image_url', 'is_active')
+    .then((items) => {
+      res.send(camelizeKeys(items));
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+// get a shop's items
 router.get('/shops/:id/items', (req, res, next) => {
   knex('items')
     .select('name', 'id')

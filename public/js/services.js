@@ -46,14 +46,6 @@
         .catch((err) => {
           throw err;
         }),
-      getByShopId: (shopId) =>
-        $http.get(`${server}/byshopid/${shopId}`)
-        .then((res) =>
-          res.data
-        )
-        .catch((err) => {
-          throw err;
-        }),
       getShops: (id) =>
         $http.get(`${server}/shops/${id}`)
         .then((res) =>
@@ -90,6 +82,14 @@
     return {
       get: () =>
         $http.get(server)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        }),
+      getMembers: (shopId) =>
+        $http.get(`${server}/${shopId}/members`)
         .then((res) =>
           res.data
         )

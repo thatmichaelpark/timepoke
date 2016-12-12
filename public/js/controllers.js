@@ -74,8 +74,8 @@
       }
     };
   })
-  .controller('MembersListController', function(members, entry, $location) {
-    members.getByShopId(entry.shopId)
+  .controller('MembersListController', function(members, shops, entry, $location) {
+    shops.getMembers(entry.shopId)
     .then((data) => {
       this.members = data;
     })
