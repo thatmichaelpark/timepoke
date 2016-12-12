@@ -23,12 +23,13 @@ router.get('/members', (req, res, next) => {
     });
 });
 
-router.get('/members/:id', (req, res, next) => {
-  knex('members')
-    .select('member_name', 'id')
-    .where('id', req.params.id)
-    .then((members) => {
-      res.send(camelizeKeys(members[0]));
+// get a member's shops:
+router.get('/members/shops/:id', (req, res, next) => {
+  knex('members_shops')
+    .select('shop_id')
+    .where('member_id', req.params.id)
+    .then((shops) => {
+      res.send(camelizeKeys(shops));
     })
     .catch((err) => {
       next(err);

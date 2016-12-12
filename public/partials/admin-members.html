@@ -47,18 +47,39 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="row">
+            <div class="col-lg-10">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" ng-model="membersController.form.name">
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="membersController.form.isActive">Active
+                </label>
+              </div>
+            </div>
+          </div>
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" ng-model="membersController.form.name">
+            <label for="shops">Workshops</label>
+            <div class="fixed-height">
+                <ul class="list-group">
+                  <li ng-repeat="shop in membersController.form.shops | orderBy: 'name'" class="list-group-item">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" ng-model="shop.checked">
+                        {{ shop.name }}
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+            </div>
           </div>
           <div class="form-group">
             <label for="imageUrl">Image URL</label>
             <input type="text" class="form-control" id="imageUrl" ng-model="membersController.form.imageUrl">
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" ng-model="membersController.form.isActive">Active
-            </label>
           </div>
         </form>
         <img ng-src="{{ membersController.form.imageUrl }}" alt="" />

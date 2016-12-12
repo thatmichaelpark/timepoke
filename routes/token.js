@@ -16,25 +16,12 @@ router.post('/token', (req, res, next) => {
 
   knex('logins')
     .where('login_name', 'ilike', loginName)
+    .where('is_active', true)
     .first()
     .then((row) => {
       if (row) {
         login = camelizeKeys(row);
         return bcrypt.compare(req.body.password, login.hashedPassword);
-      }
-      else {
-        return knex('clients')
-        .where('client_name', 'ilike', loginName)
-        .first()
-        .then((row) => {
-          if (row) {
-            login = camelizeKeys(row);
-            return bcrypt.compare(req.body.password, login.hashedPassword);
-          }
-          else {
-            throw boom.create(401, 'User could not be logged in');
-          }
-        });
       }
     })
     .then(() => {

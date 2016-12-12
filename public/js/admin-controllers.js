@@ -7,7 +7,7 @@
       alert('log out');
     };
   })
-  .controller(`MembersController`, function(members) {
+  .controller(`MembersController`, function(members, shops) {
     this.showActiveOnly = true;
 
     this.filter = () => {
@@ -26,13 +26,29 @@
       });
 
     this.click = (member) => {
-      if (member) {
+      shops.get()
+      .then(shops => {
+        if (!member) {
+          this.form = { isActive: true, shops };
+          return;
+        }
         const { id, name, imageUrl, isActive } = member;
-        this.form = { id, name, imageUrl, isActive };
-      } else {
-        this.form = { isActive: true };
-      }
-      $(`#member-edit-modal`).modal({backdrop: `static`});
+        members.getShops(id)
+        .then(memberShops => {
+          memberShops.forEach(shop => {
+            shops.filter(s => s.id === shop.shopId)[0].checked = true;
+          });
+          this.form = { id, name, imageUrl, isActive, shops };
+        })
+      })
+      .then(blah => {
+        console.log(blah);
+        $(`#member-edit-modal`).modal({backdrop: `static`});
+      })
+      .catch(err => {
+        alert(err.statusText);
+        console.log(err);
+      });
     };
 
     this.save = () => {

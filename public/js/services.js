@@ -54,6 +54,14 @@
         .catch((err) => {
           throw err;
         }),
+      getShops: (id) =>
+        $http.get(`${server}/shops/${id}`)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        }),
       patch: (id, data) =>
         $http.patch(`${server}/${id}`, data)
         .then((res) =>
@@ -118,6 +126,31 @@
 
   app.factory('logins', logins);
   logins.$inject = ['$http'];
+
+  const items = function($http) {
+    const server = '/api/items';
+
+    return {
+      get: () =>
+        $http.get(server)
+        .then((res) =>
+          res.data
+        ),
+      post: (data) =>
+        $http.post(server, data)
+        .then((res) =>
+          res.data
+        ),
+      patch: (data) =>
+        $http.patch(`${server}/${data.id}`, data)
+        .then((res) =>
+          res.data
+        )
+    };
+  };
+
+  app.factory('items', items);
+  items.$inject = ['$http'];
 
   const report = function($http) {
 
