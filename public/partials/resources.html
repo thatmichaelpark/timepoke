@@ -1,34 +1,31 @@
-<div class="hours" ng-controller="HoursController as hoursController">
-  <div class="centered">
-    How many hours?
-  </div>
-  <div class="centered">
-    <span class="button" ng-click="hoursController.click('-')">-</span>
-    <span class="datum">{{ hoursController.entry.hours }}</span>
-    <span class="button" ng-click="hoursController.click('+')">+</span>
-  </div>
-</div>
-
-<div class="items" ng-controller="ItemsController as itemsController">
-  <div class="centered">Additional items for {{ itemsController.entry.shopName }}</div>
-
-  <div class="centered">
-    <table>
+<div class="resources" ng-controller="ItemsController as itemsController">
+  <div ng-controller="HoursController as hoursController">
+    <table class="centered">
+      <tr>
+        <td>
+          Hours in {{ itemsController.entry.shopName }}
+        </td>
+        <td>
+          <button ng-click="hoursController.click('+')">+</button>
+          <span class="datum">{{ hoursController.entry.hours }}</span>
+          <button ng-click="hoursController.click('-')">-</button>
+        </td>
+      </tr>
       <tr ng-repeat="item in itemsController.entry.items | orderBy: 'name'">
         <td class="right">
           {{ item.name }}
         </td>
         <td>
-          <span class="button" ng-click="itemsController.click('-', item)">-</span
-          ><span class="datum">{{ item.quantity }}</span
-          ><span class="button" ng-click="itemsController.click('+', item)">+</span>
+          <button ng-click="itemsController.click('+', item)">+</button>
+          <span class="datum">{{ item.quantity }}</span>
+          <button ng-click="itemsController.click('-', item)">-</button>
         </td>
       </tr>
     </table>
   </div>
-</div>
 
-<nav>
-  <button type="button" name="back" ng-click="resourcesController.clickBack()">Back</button>
-  <button type="button" name="confirm" ng-click="resourcesController.clickConfirm()">Confirm</button>
-</nav>
+  <nav>
+    <button  class="left" type="button" name="back" ng-click="resourcesController.clickBack()">Back</button>
+    <button  class="right" type="button" name="confirm" ng-click="resourcesController.clickConfirm()">Confirm</button>
+  </nav>
+</div>

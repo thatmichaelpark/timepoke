@@ -5,14 +5,25 @@
   src: local('Fjalla One'), local('FjallaOne-Regular'), url(../fonts/Fjalla_One/FjallaOne-regular.ttf) format('truetype');
 }
 
-body {
+body, button {
   font-family: 'Fjalla One', sans-serif;
   text-transform: uppercase;
 }
 
+$nav-height: 70px;
+
+@mixin full($background-color) {
+  padding-bottom: $nav-height;
+  background-color: $background-color;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
 
 .start {
-  $background-color: #A032aa;
+  @include full(#A032aa);
   $foreground-color: #fff8ff;
 
   a {
@@ -23,29 +34,70 @@ body {
     padding: 25px 35px;
     text-decoration: none;
   }
-  background-color: $background-color;
-  bottom: 0;
+  align-items: center;
   display: flex;
   justify-content: center;
+}
+
+nav {
   align-items: center;
+  border-top: 1px solid black;
+  bottom: 0;
+  display: flex;
+  height: $nav-height;
   left: 0;
-  right: 0;
-  top: 0;
   position: fixed;
+  right: 0;
+  .left {
+    margin-right: auto;
+  }
+  .right {
+    margin-left: auto;
+  }
+
+  button {
+    font-size: 40px;
+    border: 0;
+  }
 }
 
 .shops {
   $background-color: crimson;
   $foreground-color: white;
-  background-color: $background-color;
+  @include full($background-color);
+
   color: $foreground-color;
   font-size: 4rem;
+  overflow: auto;
+  padding-bottom: $nav-height;
+  position: fixed;
+  button, nav {
+    background-color: $background-color;
+    color: $foreground-color;
+  }
 }
 
-.button {
-  cursor: pointer;
-  margin-left: 30px;
-  margin-right: 30px;
+.resources {
+  $background-color: skyblue;
+  $foreground-color: white;
+  @include full($background-color);
+
+  color: $foreground-color;
+  font-size: 4rem;
+  overflow: auto;
+  padding-bottom: $nav-height;
+  padding-top: 100px;
+  position: fixed;
+  button, nav {
+    background-color: $background-color;
+    color: $foreground-color;
+  }
+  table button {
+    border: 0;
+    font-size: 4rem;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 .datum {
@@ -69,9 +121,9 @@ div.members {
 }
 
 div.hours {
-  background-color: green;
+  // background-color: green;
   font-size: 4rem;
-  color: white;
+  // color: white;
   padding: 40px;
 }
 
@@ -119,7 +171,7 @@ div.circle-text {
 div.circle-text > span {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 5px;
+  padding: 5px 5px 2px;
 }
 
 .report {

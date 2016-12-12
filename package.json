@@ -6,7 +6,7 @@
   "scripts": {
     "heroku-postbuild": "knex migrate:rollback; knex migrate:latest",
     "knex": "knex",
-    "resetdb": "knex migrate:rollback; knex migrate:latest; knex seed:run",
+    "resetdb": "knex migrate:rollback; knex migrate:latest",
     "start": "nodemon server.js"
   },
   "keywords": [],

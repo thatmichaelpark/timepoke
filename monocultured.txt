@@ -62,3 +62,4 @@ DONE  add, edit, or deactivate members; assign members to shops (or vice versa?)
 TODO
 timeout
 track by $index (member name 'aaa aaa' causes problems)
+summary page
