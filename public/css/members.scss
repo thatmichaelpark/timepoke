@@ -10,6 +10,38 @@ body {
   text-transform: uppercase;
 }
 
+
+.start {
+  $background-color: #A032aa;
+  $foreground-color: #fff8ff;
+
+  a {
+    border: 12px solid $foreground-color;
+    border-radius: 10px;
+    color: $foreground-color;
+    font-size: 6em;
+    padding: 25px 35px;
+    text-decoration: none;
+  }
+  background-color: $background-color;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.shops {
+  $background-color: crimson;
+  $foreground-color: white;
+  background-color: $background-color;
+  color: $foreground-color;
+  font-size: 4rem;
+}
+
 .button {
   cursor: pointer;
   margin-left: 30px;
@@ -42,11 +74,7 @@ div.hours {
   color: white;
   padding: 40px;
 }
-div.shops {
-  background-color: crimson;
-  font-size: 4rem;
-  color: white;
-}
+
 div.items {
   background-color: skyblue;
   font-size: 4rem;
@@ -112,7 +140,6 @@ div.circle-text > span {
 
 .hours {
   text-align: center;
-  background-color: #fed;
 }
 
 .qtys {

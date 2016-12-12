@@ -4,6 +4,17 @@
 
   const app = angular.module('monoculturedApp');
 
+  const boo = function() {
+    return {
+      boo: (err) => {
+        console.log(err);
+        alert(err.statusText + (err.data ? ` (${err.data})` : ``));
+      }
+    };
+  };
+
+  app.factory('boo', boo);
+
   // entry service collects the info for a time entry:
   // member id, hours, other items
   // and provides a post method to save a time entry.

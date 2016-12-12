@@ -40,7 +40,7 @@ router.get('/members/:id/shops', (req, res, next) => {
 router.post('/members/:id/shops', (req, res, next) => {
   const { id } = req.params;
   const { shopIds } = req.body;
-console.log('id', id, 'shopIds', shopIds);
+
   knex('members_shops')
     .del()
     .where(`member_id`, id)
@@ -49,6 +49,9 @@ console.log('id', id, 'shopIds', shopIds);
         knex(`members_shops`)
         .insert({ member_id: id, shop_id: shopId })
       ))
+    })
+    .then(() => {
+      res.sendStatus(200);
     })
     .catch((err) => {
       next(err);

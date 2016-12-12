@@ -7,7 +7,7 @@
       alert('log out');
     };
   })
-  .controller(`MembersController`, function(members, shops) {
+  .controller(`MembersController`, function(members, shops, boo) {
     this.showActiveOnly = true;
 
     this.filter = () => {
@@ -22,8 +22,7 @@
         this.members = data;
       })
       .catch(err => {
-        alert(err.statusText);
-        console.log(err);
+        boo.boo(err);
       });
     };
 
@@ -49,8 +48,7 @@
         $(`#member-edit-modal`).modal({backdrop: `static`});
       })
       .catch(err => {
-        alert(err.statusText);
-        console.log(err);
+        boo.boo(err);
       });
     };
 
@@ -68,12 +66,11 @@
         this.getMembers();
       })
       .catch(err => {
-        alert(err.statusText);
-        console.log(err);
+        boo.boo(err);
       });
     };
   })
-  .controller(`LoginsController`, function(logins) {
+  .controller(`LoginsController`, function(logins, boo) {
     this.showActiveOnly = true;
 
     this.filter = () => {
@@ -88,7 +85,7 @@
         this.logins = data;
       })
       .catch(err => {
-        alert(err.statusText);
+        boo.boo(err);
       });
     }
 
@@ -112,8 +109,7 @@
         this.getLogins();
       })
       .catch((err) => {
-        alert(err.statusText);
-        console.log(err);
+        boo.boo(err);
       });
     };
   });
