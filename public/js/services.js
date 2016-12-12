@@ -47,7 +47,15 @@
           throw err;
         }),
       getShops: (id) =>
-        $http.get(`${server}/shops/${id}`)
+        $http.get(`${server}/${id}/shops`)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        }),
+      saveShops: (id, shopIds) =>
+        $http.post(`${server}/${id}/shops`, { shopIds })
         .then((res) =>
           res.data
         )

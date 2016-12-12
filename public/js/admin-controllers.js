@@ -56,8 +56,13 @@
 
     this.save = () => {
       const { id, name, imageUrl, isActive, shops } = this.form;
+      const shopIds = shops.filter(shop => shop.checked).map(shop => shop.id);
+
       (id ? members.patch(id, { name, imageUrl, isActive })
           : members.post({ id, name, imageUrl, isActive }))
+      .then(() => {
+        members.saveShops(id, shopIds);
+      })
       .then(() => {
         $(`#member-edit-modal`).modal('hide');
         this.getMembers();

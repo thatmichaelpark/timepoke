@@ -53,8 +53,12 @@ shops - name, image, active/inactive.
 items -
 
 /admin
-  add, edit, or deactivate logins; change passwords
-  add, edit, or deactivate members; assign members to shops (or vice versa?)
+DONE  add, edit, or deactivate logins; change passwords
+DONE  add, edit, or deactivate members; assign members to shops (or vice versa?)
   add, edit, or deactivate shops; add, edit, or deactivate items (per shop)
   (edit time entries?)
   generate reports
+
+TODO
+timeout
+track by $index (member name 'aaa aaa' causes problems)
