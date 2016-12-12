@@ -56,17 +56,16 @@
 
     this.save = () => {
       const { id, name, imageUrl, isActive, shops } = this.form;
-      if (id) {
-        members.patch(id, { name, imageUrl, isActive })
-        .then(() => {
-          $(`#member-edit-modal`).modal('hide');
-          this.getMembers();
-        })
-        .catch(err => {
-          alert(err.statusText);
-          console.log(err);
-        });
-      }
+      (id ? members.patch(id, { name, imageUrl, isActive })
+          : members.post({ id, name, imageUrl, isActive }))
+      .then(() => {
+        $(`#member-edit-modal`).modal('hide');
+        this.getMembers();
+      })
+      .catch(err => {
+        alert(err.statusText);
+        console.log(err);
+      });
     };
   })
   .controller(`LoginsController`, function(logins) {

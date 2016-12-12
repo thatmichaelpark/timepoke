@@ -51,24 +51,24 @@ router.get('/members/byshopid/:shopId', (req, res, next) => {
 });
 
 router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
-  const memberName = req.body.memberName.trim().replace(/\s+/g, ' ');
-  const imageUrl = req.body.imageUrl;
+  const name = req.body.name.trim().replace(/\s+/g, ' ');
+  const { imageUrl, isActive } = req.body;
 
-  knex('members').where('member_name', 'ilike', memberName)
+  knex('members').where('name', 'ilike', name)
     .then((members) => {
       if (members.length > 0) {
         throw boom.create(400, 'That name is already in use');
       }
 
       return knex('members')
-        .insert(decamelizeKeys({ memberName, imageUrl, isActive }), '*');
+        .insert(decamelizeKeys({ name, imageUrl, isActive }), '*');
     })
     .then((result) => {
       res.send({
         id: result[0].id,
-        memberName: result[0].member_name,
+        name: result[0].name,
         imageUrl: result[0].image_url,
-        isActive: result[0].isActive
+        isActive: result[0].is_active
       });
     })
     .catch((err) => {
