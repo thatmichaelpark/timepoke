@@ -16,7 +16,8 @@
         { name: this.searchString };
     };
 
-    members.get()
+    this.getMembers = () => {
+      members.get()
       .then(data => {
         this.members = data;
       })
@@ -24,6 +25,9 @@
         alert(err.statusText);
         console.log(err);
       });
+    };
+
+    this.getMembers();
 
     this.click = (member) => {
       shops.get()
@@ -41,8 +45,7 @@
           this.form = { id, name, imageUrl, isActive, shops };
         })
       })
-      .then(blah => {
-        console.log(blah);
+      .then(() => {
         $(`#member-edit-modal`).modal({backdrop: `static`});
       })
       .catch(err => {
@@ -52,8 +55,18 @@
     };
 
     this.save = () => {
-      $(`#member-edit-modal`).modal('hide');
-      console.log(this.form);
+      const { id, name, imageUrl, isActive, shops } = this.form;
+      if (id) {
+        members.patch(id, { name, imageUrl, isActive })
+        .then(() => {
+          $(`#member-edit-modal`).modal('hide');
+          this.getMembers();
+        })
+        .catch(err => {
+          alert(err.statusText);
+          console.log(err);
+        });
+      }
     };
   })
   .controller(`LoginsController`, function(logins) {

@@ -78,7 +78,7 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
 
 router.patch('/members/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
   knex('members')
-  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'isActive'])
+  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'is_active'])
   .where('id', req.params.id)
   .then((members) => {
     res.send(camelizeKeys(members[0]));
