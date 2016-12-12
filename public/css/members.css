@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'Fjalla One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fjalla One'), local('FjallaOne-Regular'), url(../fonts/Fjalla_One/FjallaOne-regular.ttf) format('truetype');
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'Fjalla One', sans-serif;
   text-transform: uppercase;
 }
 
@@ -84,7 +91,7 @@ div.circle-text {
 div.circle-text > span {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 5px;
+  padding: 5px;
 }
 
 .report {
