@@ -118,6 +118,21 @@ nav {
   }
 }
 
+.summary {
+  $background-color: olivedrab;
+  $foreground-color: white;
+  @include full($background-color);
+  color: $foreground-color;
+  font-size: 4rem;
+  button, nav {
+    background-color: $background-color;
+    color: $foreground-color;
+  }
+  .container {
+    width: 80%;
+  }
+}
+
 div.circles-list {
   display: flex;
   flex-wrap: wrap;
