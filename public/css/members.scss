@@ -2,7 +2,7 @@
   font-family: 'Fjalla One';
   font-style: normal;
   font-weight: 400;
-  src: local('Fjalla One'), local('FjallaOne-Regular'), font-url(../fonts/Fjalla_One/FjallaOne-regular.ttf) format('truetype');
+  src: local('Fjalla One'), local('FjallaOne-Regular'), url(../fonts/FjallaOne-regular.ttf) format('truetype');
 }
 
 body, button {
