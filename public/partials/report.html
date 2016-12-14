@@ -1,29 +1,20 @@
-<h1>Report</h1>
-<table class="report">
-  <thead>
-    <th class="date">Date</th>
-    <th class="member">Member</th>
-    <th ng-repeat="shopName in reportController.shopNames" class="hours">
-      {{ shopName }}
-    </th>
-    <th ng-repeat="itemName in reportController.itemNames" class="qtys">
-      {{ itemName }}
-    </th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="row in reportController.data">
-      <td class="date">{{ row.date | date }}</td>
-      <td class="member">{{ row.name }}</td>
-      <td ng-repeat="shopHour in row.shopHours track by $index" class="hours">
-        {{ shopHour }}
-      </td>
-      <td ng-repeat="itemQty in row.itemQtys track by $index" class="qtys">
-        {{ itemQty }}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="report">
+  <div class="centered">
+    <div class="container">
+      <h2>{{ reportController.entry.memberName }}</h2>
+      <ul>
+        <li ng-repeat="shop in reportController.data">
+          {{ shop.hours }} hours in {{ shop.shop }}
+          <ul ng-repeat="item in shop.items">
+            {{ item.quantity }} of {{ item.item }}
+          </ul>
+        </li>
+      </ul>
+      Total hours: {{ reportController.total }}
+    </div>
+  </div>
+  <nav>
+    <button class="right" type="button" name="confirm" ng-click="reportController.clickDone()">Done</button>
+  </nav>
 
-<nav>
-  <button type="button" name="confirm" ng-click="reportController.clickConfirm()">Confirm</button>
-</nav>
+</div>

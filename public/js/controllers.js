@@ -10,14 +10,14 @@
     //   $scope.$apply();
     // });
   // })
-  .controller('ShopsController', function(shops, entry, $location) {
+  .controller('ShopsController', function(shops, entry, $location, boo) {
     this.entry = entry;
     shops.get()
     .then((data) => {
       this.shops = data;
     })
     .catch((err) => {
-      console.log(err);
+      boo.boo(err);
     });
     this.click = (shop) => {
       this.entry.shopId = shop.id;
@@ -35,7 +35,7 @@
         $location.path(`resources`);
       })
       .catch((err) => {
-        console.log(err);
+        boo.boo(err);
       });
     }
     this.clickBack = () => {
@@ -80,7 +80,7 @@
       this.members = data;
     })
     .catch((err) => {
-      console.log(err);
+      boo.boo(err);
     });
     this.members = [];
     this.click = (member) => {
@@ -106,66 +106,122 @@
       });
     }
   })
-  .controller(`ReportController`, function(report, $location) {
-    const parseItems = (item) => {
-      const result = [];
-      const re = /[\\"]*([\w\s]+)[\\"]*,(\d+)/g;
-      let x;
+  .controller(`ReportController`, function(entry, members, $location) {
+    this.entry = entry;
+    this.data = [];
+    this.total = 0;
 
-      while ((x = re.exec(item)) !== null) {
-        result.push({
-          name: x[1],
-          quantity: Number.parseInt(x[2])
-        });
-      }
-      return result;
-    };
-
-    report.get()
-    .then((entries) => {
-      entries.map(entry => {
-        entry.items = parseItems(entry.items);
-        return entry;
-      });
-
-      this.itemNames = [];
-      this.shopNames = [];
-      for (const entry of entries) {
-        if (this.shopNames.indexOf(entry.shopName) === -1) {
-          this.shopNames.push(entry.shopName);
+    members.getEntries(entry.memberId)
+    .then(entries => {
+      const temp = [];
+      for (const e of entries) {
+        if (temp[e.entryId]) { // entry already exists?
+          temp[e.entryId].items[e.itemName] = e.quantity;
         }
-        for (const item of entry.items) {
-          if (this.itemNames.indexOf(item.name) === -1) {
-            this.itemNames.push(item.name);
+        else {  // create new entry
+          temp[e.entryId] = {
+            shop: e.shopName,
+            hours: e.hours,
+            items: {}
+          }
+          if (e.itemName) {
+            temp[e.entryId].items[e.itemName] = e.quantity;
           }
         }
       }
-      this.shopNames.sort();
-      this.itemNames.sort();
-
-      const table = [];
-      for (const entry of entries) {
-        const row = {
-          date: entry.createdAt,
-          name: entry.memberName,
-          shopHours: Array(this.shopNames.length),
-          itemQtys: Array(this.itemNames.length)
-        };
-        row.shopHours[this.shopNames.indexOf(entry.shopName)] = entry.hours;
-        for (const item of entry.items) {
-          row.itemQtys[this.itemNames.indexOf(item.name)] = item.quantity;
+      const objObj = {};
+      for (const index in temp) {
+        const t = temp[index];
+        if (objObj[t.shop]) { // exists
+          objObj[t.shop].hours += t.hours;
         }
-        table.push(row);
+        else { // add new
+          objObj[t.shop] = { hours: t.hours, items: {} }
+        }
+        for (const item in t.items) {
+          const initial = objObj[t.shop].items[item] || 0;
+          objObj[t.shop].items[item] = initial + t.items[item];
+        }
       }
-      this.data = table;
+      const arr = [];
+      for (const shop in objObj) {
+        const o = objObj[shop];
+        const a = { shop, hours: o.hours, items: [] };
+        arr.push(a);
+        for (const item in o.items) {
+          a.items.push({ item, quantity: o.items[item] });
+        }
+      }
+      this.data = arr;
+      this.total = arr.reduce((acc, elem) => acc + elem.hours, 0);
+
+      this.clickDone = () => {
+        $location.path(`/`);
+      }
     })
-    .catch((err) => {
-      console.log(err);
-    });
-    this.clickConfirm = () => {
-      $location.path(`/`);
-    }
+    .catch(err => {
+      boo.boo(err);
+    })
   })
+  //   const parseItems = (item) => {
+  //     const result = [];
+  //     const re = /[\\"]*([\w\s]+)[\\"]*,(\d+)/g;
+  //     let x;
+  //
+  //     while ((x = re.exec(item)) !== null) {
+  //       result.push({
+  //         name: x[1],
+  //         quantity: Number.parseInt(x[2])
+  //       });
+  //     }
+  //     return result;
+  //   };
+  //
+  //   report.get()
+  //   .then((entries) => {
+  //     entries.map(entry => {
+  //       entry.items = parseItems(entry.items);
+  //       return entry;
+  //     });
+  //
+  //     this.itemNames = [];
+  //     this.shopNames = [];
+  //     for (const entry of entries) {
+  //       if (this.shopNames.indexOf(entry.shopName) === -1) {
+  //         this.shopNames.push(entry.shopName);
+  //       }
+  //       for (const item of entry.items) {
+  //         if (this.itemNames.indexOf(item.name) === -1) {
+  //           this.itemNames.push(item.name);
+  //         }
+  //       }
+  //     }
+  //     this.shopNames.sort();
+  //     this.itemNames.sort();
+  //
+  //     const table = [];
+  //     for (const entry of entries) {
+  //       const row = {
+  //         date: entry.createdAt,
+  //         name: entry.memberName,
+  //         shopHours: Array(this.shopNames.length),
+  //         itemQtys: Array(this.itemNames.length)
+  //       };
+  //       row.shopHours[this.shopNames.indexOf(entry.shopName)] = entry.hours;
+  //       for (const item of entry.items) {
+  //         row.itemQtys[this.itemNames.indexOf(item.name)] = item.quantity;
+  //       }
+  //       table.push(row);
+  //     }
+  //     this.data = table;
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  //   this.clickConfirm = () => {
+  //     $location.path(`/`);
+  //   }
+  // })
   // .controller('UsersController', function(users) {
   //   const loadUsers = () => {
   //     users.get()

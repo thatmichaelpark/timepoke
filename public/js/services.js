@@ -73,6 +73,14 @@
         .catch((err) => {
           throw err;
         }),
+      getEntries: (id) =>
+        $http.get(`${server}/${id}/entries`)
+        .then((res) =>
+          res.data
+        )
+        .catch((err) => {
+          throw err;
+        }),
       patch: (id, data) =>
         $http.patch(`${server}/${id}`, data)
         .then((res) =>

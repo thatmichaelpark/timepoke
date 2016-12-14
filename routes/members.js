@@ -96,6 +96,51 @@ router.patch('/members/:id', checkAuth, /*ev(validations.patch),*/ (req, res, ne
   });
 });
 
+router.get(`/members/:id/entries/`, (req, res, next) => {
+  const q = `
+
+select *
+from
+  (
+    select entry_id, quantity, name as item_name
+    from
+      entries_items
+    inner join
+      items
+    on entries_items.item_id = items.id
+  ) entries_items
+right join
+  (
+    select *
+    from
+      (
+        select id as entry_id, hours, shop_id
+        from
+          entries
+        where entries.member_id = ${req.params.id}
+      ) entries
+    inner join
+      (
+        select id as shop_id, name as shop_name
+        from
+          shops
+      ) shops
+    on entries.shop_id = shops.shop_id
+  ) entries_shops
+
+on entries_items.entry_id = entries_shops.entry_id
+
+  `;
+  knex.raw(q)
+  .then((data) => {
+    res.send(camelizeKeys(data.rows));
+  })
+  .catch((err) => {
+    next(err);
+  });
+});
+
+
 router.delete('/members/:id', checkAuth, (req, res, next) => {
   if (req.token.member_name !== 'admin') {
     return next(boom.create(401, 'Not logged in as admin'));

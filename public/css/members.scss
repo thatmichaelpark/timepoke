@@ -133,6 +133,21 @@ nav {
   }
 }
 
+.report {
+  $background-color: pink;
+  $foreground-color: white;
+  @include full($background-color);
+  color: $foreground-color;
+  font-size: 2rem;
+  button, nav {
+    background-color: $background-color;
+    color: $foreground-color;
+  }
+  .container {
+    width: 80%;
+  }
+}
+
 div.circles-list {
   display: flex;
   flex-wrap: wrap;
@@ -172,29 +187,4 @@ div.circle-text > span {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 5px 5px 2px;
-}
-
-.report {
-  text-transform: none;
-}
-
-.report th, .report td {
-  padding: 5px;
-}
-
-.date {
-  background-color: #fde;
-}
-
-.member {
-  background-color: #efd;
-}
-
-.hours {
-  text-align: center;
-}
-
-.qtys {
-  text-align: center;
-  background-color: #def;
 }
