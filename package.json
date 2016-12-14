@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "6.7.0"
+  }
   "scripts": {
     "heroku-postbuild": "knex migrate:rollback; knex migrate:latest",
     "knex": "knex",
