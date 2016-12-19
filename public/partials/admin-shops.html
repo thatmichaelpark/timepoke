@@ -1,1 +1,78 @@
-<h1>Manage Workshops (Coming Soon)</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">Workshops</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="search-label">Search</span>
+          <input type="text" ng-model="shopsController.searchString" class="form-control" aria-describedby="search-label">
+        </div>
+      </div><!-- /.col-lg-6 -->
+      <div class="col-lg-3">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="shopsController.showActiveOnly">
+            Hide inactive shops
+          </label>
+        </div>
+      </div><!-- /.col-lg-3 -->
+      <div class="col-lg-3">
+        <button type="button" class="btn btn-primary" ng-click="shopsController.click(null)">Add New Shop</button>
+      </div><!-- /.col-lg-3 -->
+    </div><!-- /.row -->
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <th>Shop</th>
+      <th>Active?</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="shop in shopsController.shops | filter: shopsController.filter() | orderBy: 'name'" ng-click="shopsController.click(shop)">
+        <td>{{ shop.name }}</td>
+        <td>{{ shop.isActive }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="shop-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          {{ shopsController.form.id ? 'Shop ' + shopsController.form.id : 'New Shop'}}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Shop</label>
+            <input type="text" class="form-control" id="name" ng-model="shopsController.form.shopName">
+          </div>
+          <div class="form-group">
+            <label for="password">New Password</label>
+            <input type="text" class="form-control" id="password" ng-model="shopsController.form.password">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="shopsController.form.isAdmin">Admin
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="shopsController.form.isActive">Active
+            </label>
+          </div>
+        </form>
+        <img ng-src="{{ shopsController.form.imageUrl }}" alt="" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="shopsController.save()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

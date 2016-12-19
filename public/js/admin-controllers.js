@@ -112,8 +112,26 @@
         boo.boo(err);
       });
     };
-  });
+  })
+  .controller('ShopsController', function(shops, boo) {
+    this.showActiveOnly = true;
 
-  // .controller('ShopsController', function(shops, entry, $location) {
-  // });
+    this.filter = () => {
+      return this.showActiveOnly ?
+        { shopName: this.searchString, isActive: true } :
+        { shopName: this.searchString };
+    };
+
+    this.getShops = () => {
+      shops.get()
+      .then(data => {
+        this.shops = data;
+      })
+      .catch(err => {
+        boo.boo(err);
+      });
+    }
+
+    this.getShops();
+  });
 })();
