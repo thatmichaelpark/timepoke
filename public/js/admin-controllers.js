@@ -135,7 +135,6 @@
     this.getShops();
 
     this.click = (shop) => {
-console.log(shop);
       if (shop) {
         const { id, name, isActive } = shop;
         this.form = { id, name, isActive };
@@ -153,6 +152,7 @@ console.log(shop);
         this.getShops();
       })
       .catch((err) => {
+        console.log('boo boo');
         boo.boo(err);
       });
     };

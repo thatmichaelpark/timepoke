@@ -77,15 +77,11 @@ router.post('/shops', /*ev(validations.post),*/ (req, res, next) => {
 });
 
 router.patch('/shops/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
-  if (req.token.shop_name !== 'admin') {
-    return next(boom.create(401, 'Not logged in as admin'));
-  }
-
   knex('shops')
-  .update({ shop_name: req.body.shop_name }, ['id', 'shop_name'])
+  .update(decamelizeKeys(req.body), ['id', 'name', `is_active`])
   .where('id', req.params.id)
   .then((shops) => {
-    res.send(shops[0]);
+    res.send(camelizeKeys(shops[0]));
   })
   .catch((err) => {
     next(err);

@@ -130,7 +130,12 @@
         )
         .catch((err) => {
           throw err;
-        })
+        }),
+      patch: (data) =>
+        $http.patch(`${server}/${data.id}`, data)
+        .then((res) =>
+          res.data
+        )
     };
   };
 
