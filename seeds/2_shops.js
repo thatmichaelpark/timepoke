@@ -6,40 +6,49 @@ exports.seed = function(knex) {
     .then(() =>
       knex('shops')
         .insert([{
-          name: 'Litho',
+          name: 'Brons & Gjuteri',
           image_url: `img/litho.jpg`
         }, {
-          name: 'Foundry',
+          name: 'Elektronik',
           image_url: `img/foundry.jpg`
         }, {
-          name: 'Darkroom',
+          name: 'Emalj',
           image_url: `img/darkroom.jpg`
         }, {
-          name: 'Screenprint',
+          name: 'Glas',
           image_url: `img/screenprint.jpg`
         }, {
-          name: 'Litho 2',
+          name: 'Keramik',
           image_url: `img/litho.jpg`
         }, {
-          name: 'Foundry 2',
+          name: 'Koppargrafik',
           image_url: `img/foundry.jpg`
         }, {
-          name: 'Darkroom 2',
+          name: 'Laserkärere',
           image_url: `img/darkroom.jpg`
         }, {
-          name: 'Screenprint 2',
+          name: 'Litografi',
           image_url: `img/screenprint.jpg`
         }, {
-          name: 'Litho 3',
+          name: 'Metall',
           image_url: `img/litho.jpg`
         }, {
-          name: 'Foundry 3',
+          name: 'Textilpatinering',
           image_url: `img/foundry.jpg`
         }, {
-          name: 'Darkroom 3',
+          name: 'Textil',
           image_url: `img/darkroom.jpg`
         }, {
-          name: 'Screenprint 3',
+          name: 'Trä',
+          image_url: `img/screenprint.jpg`
+        }, {
+          name: 'Tuft',
+          image_url: `img/screenprint.jpg`
+        }, {
+          name: 'Screentryck',
+          image_url: `img/screenprint.jpg`
+        }, {
+          name: 'Vinylplotter',
           image_url: `img/screenprint.jpg`
         }])
         .then(() =>
