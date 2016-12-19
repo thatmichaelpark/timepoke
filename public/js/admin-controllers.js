@@ -118,8 +118,8 @@
 
     this.filter = () => {
       return this.showActiveOnly ?
-        { shopName: this.searchString, isActive: true } :
-        { shopName: this.searchString };
+        { name: this.searchString, isActive: true } :
+        { name: this.searchString };
     };
 
     this.getShops = () => {
@@ -133,5 +133,28 @@
     }
 
     this.getShops();
+
+    this.click = (shop) => {
+console.log(shop);
+      if (shop) {
+        const { id, name, isActive } = shop;
+        this.form = { id, name, isActive };
+      }
+      else {
+        this.form = { isActive: true };
+      }
+      $(`#shop-edit-modal`).modal({backdrop: `static`});
+    };
+
+    this.save = (data) => {
+      $(`#shop-edit-modal`).modal('hide');
+      (this.form.id ? shops.patch(this.form) : shops.post(this.form))
+      .then((res) => {
+        this.getShops();
+      })
+      .catch((err) => {
+        boo.boo(err);
+      });
+    };
   });
 })();
