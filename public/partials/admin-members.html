@@ -86,7 +86,7 @@
           <div class="stretchy-wrapper">
             <img ng-src="{{ membersController.form.imageUrl }}" alt="" />
             <div class="circle-text">
-              <span ng-repeat="n in membersController.form.name.split(' ')">{{ n }}</span>
+              <span ng-repeat="n in membersController.form.name.split(' ') track by $index">{{ n }}</span>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@
       <a ng-click="membersListController.click(member)">
         <img ng-src="{{ member.imageUrl }}" alt="{{ member.imageUrl }}" />
         <div class="circle-text">
-          <span ng-repeat="name in member.name.split(' ')">{{ name }}</span>
+          <span ng-repeat="name in member.name.split(' ') track by $index">{{ name }}</span>
         </div>
       </a>
     </div>
