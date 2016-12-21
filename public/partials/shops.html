@@ -5,7 +5,7 @@
       <a ng-click="shopsController.click(shop)">
         <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
         <div class="circle-text">
-          <span>{{ shop.name }}</span>
+          <span ng-repeat="name in shop.name.split(' ')">{{ name }}</span>
         </div>
       </a>
     </div>

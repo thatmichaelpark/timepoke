@@ -82,7 +82,14 @@
             <input type="text" class="form-control" id="imageUrl" ng-model="membersController.form.imageUrl">
           </div>
         </form>
-        <img ng-src="{{ membersController.form.imageUrl }}" alt="" />
+        <div class="centered">
+          <div class="stretchy-wrapper">
+            <img ng-src="{{ membersController.form.imageUrl }}" alt="" />
+            <div class="circle-text">
+              <span ng-repeat="n in membersController.form.name.split(' ')">{{ n }}</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
