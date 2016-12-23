@@ -57,6 +57,8 @@ DONE add, edit, or deactivate members; assign members to shops (or vice versa?)
 DONE track by $index (member name 'aaa aaa' causes problems)
 
 TODO
+disable confirm until non-zero input
+membership type
 shops.post (plus check for name in use)
 shop dialog: imageUrl
 shop dialog: manage items
