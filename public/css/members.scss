@@ -81,6 +81,9 @@ nav {
   @include full($background-color);
 
   color: $foreground-color;
+  .disabled {
+    color: rgba(255, 255, 255, 0.3);
+  }
   font-size: 4rem;
   padding-top: 100px;
   button, nav {

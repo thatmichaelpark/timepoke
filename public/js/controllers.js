@@ -42,12 +42,22 @@
       $location.path(`/`);
     };
   })
-  .controller(`ResourcesController`, function($location) {
+  .controller(`ResourcesController`, function(entry, $location) {
     this.clickBack = () => {
       $location.path(`shops`);
     };
     this.clickConfirm = () => {
       $location.path(`memberslist`);
+    };
+    this.disableConfirm = () => {
+      // returns true (to disable Confirm button) if all inputs (hours and items) are 0
+      if (entry.hours) {
+        return false;
+      }
+      if (entry.items.reduce((acc, elem) => acc || elem.quantity, false)) {
+        return false;
+      }
+      return true;
     }
   })
   .controller('HoursController', function(entry) {

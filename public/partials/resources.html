@@ -26,6 +26,7 @@
 
   <nav>
     <button  class="left" type="button" name="back" ng-click="resourcesController.clickBack()">Back</button>
-    <button  class="right" type="button" name="confirm" ng-click="resourcesController.clickConfirm()">Confirm</button>
+    <button  class="right" type="button" name="confirm" ng-click="resourcesController.clickConfirm()"
+      ng-disabled="resourcesController.disableConfirm()" ng-class="{ disabled: resourcesController.disableConfirm() }">Confirm</button>
   </nav>
 </div>
