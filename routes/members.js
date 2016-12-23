@@ -14,7 +14,7 @@ const { checkAuth } = require('./middleware');
 
 router.get('/members', (req, res, next) => {
   knex('members')
-    .select('id', 'name', 'image_url', 'is_active')
+    .select('id', 'name', 'image_url', 'is_active', 'membership_tier')
     .then((members) => {
       res.send(camelizeKeys(members));
     })
@@ -76,7 +76,8 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
         id: result[0].id,
         name: result[0].name,
         imageUrl: result[0].image_url,
-        isActive: result[0].is_active
+        isActive: result[0].is_active,
+        membershipTier: result[0].membership_tier
       });
     })
     .catch((err) => {
@@ -86,7 +87,7 @@ router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
 
 router.patch('/members/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
   knex('members')
-  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'is_active'])
+  .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'is_active', 'membership_tier'])
   .where('id', req.params.id)
   .then((members) => {
     res.send(camelizeKeys(members[0]));

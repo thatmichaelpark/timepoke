@@ -6,8 +6,7 @@ exports.up = function(knex) {
     table.string('name').notNullable().defaultTo('');
     table.string('image_url').defaultTo('img/memberdefault.jpeg');
     table.boolean('is_active').defaultTo(true);
-    table.specificType('hashed_password',
-      'char(60)').notNullable().defaultTo('');
+    table.string('membership_tier').defaultTo('mini');
     table.timestamps(true, true);
   });
 };

@@ -24,6 +24,7 @@
     return {
       memberId: 0,
       memberName: ``,
+      membershipTier: ``,
       shopId: 0,
       shopName: ``,
       hours: 0,

@@ -1,7 +1,7 @@
 <div class="report">
   <div class="centered">
     <div class="container">
-      <h2>{{ reportController.entry.memberName }}</h2>
+      <h2>{{ reportController.entry.memberName }} ({{ reportController.entry.membershipTier}})</h2>
       <ul>
         <li ng-repeat="shop in reportController.data">
           {{ shop.hours }} hours in {{ shop.shop }}

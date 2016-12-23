@@ -48,10 +48,21 @@
       <div class="modal-body">
         <form>
           <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-6">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" ng-model="membersController.form.name">
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="checkbox">
+                <label for="tier">Membership</label>
+                  <select name="tier" ng-model="membersController.form.membershipTier">
+                    <option value="mini">mini</option>
+                    <option value="midi">midi</option>
+                    <option value="maxi">maxi</option>
+                  </select>
+                </label>
               </div>
             </div>
             <div class="col-lg-2">

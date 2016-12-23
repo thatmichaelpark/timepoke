@@ -29,7 +29,7 @@ router.get('/shops/:id/members/', (req, res, next) => {
     .where('shop_id', req.params.id)
     .where(`is_active`, true) // active members only
     .innerJoin(`members`, `members.id`, `member_id`)
-    .select(`members.id`, 'name', 'image_url', 'is_active')
+    .select(`members.id`, 'name', 'image_url', 'is_active', 'membership_tier')
     .then((items) => {
       res.send(camelizeKeys(items));
     })

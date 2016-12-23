@@ -96,6 +96,7 @@
     this.click = (member) => {
       entry.memberId = member.id;
       entry.memberName = member.name;
+      entry.membershipTier = member.membershipTier;
       $location.path(`summary`);
     }
     this.clickBack = () => {

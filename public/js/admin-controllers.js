@@ -35,13 +35,13 @@
           this.form = { isActive: true, shops };
           return;
         }
-        const { id, name, imageUrl, isActive } = member;
+        const { id, name, imageUrl, isActive, membershipTier } = member;
         members.getShops(id)
         .then(memberShops => {
           memberShops.forEach(shop => {
             shops.filter(s => s.id === shop.shopId)[0].checked = true;
           });
-          this.form = { id, name, imageUrl, isActive, shops };
+          this.form = { id, name, imageUrl, isActive, membershipTier, shops };
         })
       })
       .then(() => {
@@ -53,11 +53,11 @@
     };
 
     this.save = () => {
-      const { id, name, imageUrl, isActive, shops } = this.form;
+      const { id, name, imageUrl, isActive, membershipTier, shops } = this.form;
       const shopIds = shops.filter(shop => shop.checked).map(shop => shop.id);
 
-      (id ? members.patch(id, { name, imageUrl, isActive })
-          : members.post({ id, name, imageUrl, isActive }))
+      (id ? members.patch(id, { name, imageUrl, isActive, membershipTier })
+          : members.post({ id, name, imageUrl, isActive, membershipTier }))
       .then(() => {
         members.saveShops(id, shopIds);
       })
