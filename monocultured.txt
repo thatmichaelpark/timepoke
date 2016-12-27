@@ -57,11 +57,11 @@ DONE add, edit, or deactivate members; assign members to shops (or vice versa?)
 DONE track by $index (member name 'aaa aaa' causes problems)
 DONE disable confirm until non-zero input
 DONE membership type
+DONE timeout
 
 TODO
 shops.post (plus check for name in use)
 shop dialog: imageUrl
 shop dialog: manage items
-timeout
 reports
 (edit time entries?)

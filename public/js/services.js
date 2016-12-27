@@ -210,53 +210,28 @@
   app.factory('report', report);
   report.$inject = ['$http'];
 
-  // const puzzles = function($http) {
-  //   const server = 'http://localhost:8000/api/puzzles';
-  //
-  //   return {
-  //     get: () =>
-  //       $http.get(server)
-  //       .then((res) =>
-  //         res.data
-  //       )
-  //       .catch((err) => {
-  //         throw err;
-  //       }),
-  //     getOne: (id) =>
-  //       $http.get(`${server}/${id}`)
-  //       .then((res) =>
-  //         res.data
-  //       )
-  //       .catch((err) => {
-  //         throw err;
-  //       }),
-  //     delete: (id) =>
-  //       $http.delete(`${server}/${id}`)
-  //       .then((res) =>
-  //         res.data
-  //       )
-  //       .catch((err) => {
-  //         throw err;
-  //       }),
-  //     post: (data) =>
-  //       $http.post(server, data)
-  //       .then((res) =>
-  //         res.data
-  //       )
-  //       .catch((err) => {
-  //         throw err;
-  //       }),
-  //     patch: (id, data) =>
-  //       $http.patch(`${server}/${id}`, data)
-  //       .then((res) =>
-  //         res.data
-  //       )
-  //       .catch((err) => {
-  //         throw err;
-  //       })
-  //   };
-  // };
-  //
-  // app.factory('puzzles', puzzles);
-  // puzzles.$inject = ['$http'];
+  const timer = function($timeout, $location) {
+    const delay = 60000; 
+    const fn = () => {
+      $location.path('/');
+    };
+
+    return {
+      promise: null,
+      start: function () {
+        if (this.promise) {
+          this.stop();
+        }
+        this.promise = $timeout(fn, delay);
+      },
+      stop: function () {
+        $timeout.cancel(this.promise);
+        this.promise = null;
+      }
+    };
+  };
+
+  app.factory('timer', timer);
+  timer.$inject = ['$timeout', '$location'];
+
 })();

@@ -10,8 +10,11 @@
     //   $scope.$apply();
     // });
   // })
-  .controller('ShopsController', function(shops, entry, $location, boo) {
+  .controller('ShopsController', function(shops, entry, $location, timer, boo) {
     this.entry = entry;
+
+    timer.start();
+
     shops.get()
     .then((data) => {
       this.shops = data;
@@ -42,7 +45,9 @@
       $location.path(`/`);
     };
   })
-  .controller(`ResourcesController`, function(entry, $location) {
+  .controller(`ResourcesController`, function(entry, $location, timer) {
+    timer.start();
+
     this.clickBack = () => {
       $location.path(`shops`);
     };
@@ -60,7 +65,7 @@
       return true;
     }
   })
-  .controller('HoursController', function(entry) {
+  .controller('HoursController', function(entry, timer) {
     this.entry = entry;
     this.click = (plusMinus) => {
       if (plusMinus === `+`) {
@@ -70,9 +75,10 @@
           --this.entry.hours;
         }
       }
+      timer.start();
     }
   })
-  .controller('ItemsController', function(entry, $location) {
+  .controller('ItemsController', function(entry, $location, timer) {
     this.entry = entry;
     this.click = (plusMinus, item) => {
       if (plusMinus === '+') {
@@ -82,9 +88,11 @@
           --item.quantity;
         }
       }
+      timer.start();
     };
   })
-  .controller('MembersListController', function(members, shops, entry, $location) {
+  .controller('MembersListController', function(members, shops, entry, $location, timer) {
+    timer.start();
     shops.getMembers(entry.shopId)
     .then((data) => {
       this.members = data;
@@ -103,8 +111,10 @@
       $location.path(`resources`);
     };
   })
-  .controller('SummaryController', function(entry, $location) {
+  .controller('SummaryController', function(entry, $location, timer) {
     this.entry = entry;
+    timer.start();
+
     this.filterFn = () => {
       return (item) => item.quantity;
     };
@@ -117,10 +127,12 @@
       });
     }
   })
-  .controller(`ReportController`, function(entry, members, $location) {
+  .controller(`ReportController`, function(entry, members, $location, timer) {
     this.entry = entry;
     this.data = [];
     this.total = 0;
+
+    timer.start();
 
     members.getEntries(entry.memberId)
     .then(entries => {
