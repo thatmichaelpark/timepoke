@@ -12,19 +12,19 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="shopsController.showActiveOnly">
-            Hide inactive shops
+            Hide inactive workshops
           </label>
         </div>
       </div><!-- /.col-lg-3 -->
       <div class="col-lg-3">
-        <button type="button" class="btn btn-primary" ng-click="shopsController.click(null)">Add New Shop</button>
+        <button type="button" class="btn btn-primary" ng-click="shopsController.click(null)">Add New Workshop</button>
       </div><!-- /.col-lg-3 -->
     </div><!-- /.row -->
   </div>
 
   <table class="table table-hover">
     <thead>
-      <th>Shop</th>
+      <th>Workshop</th>
       <th>Active?</th>
     </thead>
     <tbody>
@@ -43,13 +43,13 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">
-          {{ shopsController.form.id ? 'Shop ' + shopsController.form.id : 'New Shop'}}
+          {{ shopsController.form.id ? 'Workshop ' + shopsController.form.id : 'New Workshop'}}
         </h4>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="name">Shop</label>
+            <label for="name">Workshop</label>
             <input type="text" class="form-control" id="name" ng-model="shopsController.form.name">
           </div>
           <div class="checkbox">

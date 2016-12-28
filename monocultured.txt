@@ -58,9 +58,9 @@ DONE track by $index (member name 'aaa aaa' causes problems)
 DONE disable confirm until non-zero input
 DONE membership type
 DONE timeout
+DONE shops.post (plus check for name in use); same-name check in shops.patch (except for same id)
 
 TODO
-shops.post (plus check for name in use)
 shop dialog: imageUrl
 shop dialog: manage items
 reports
