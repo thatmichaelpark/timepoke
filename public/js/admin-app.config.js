@@ -20,6 +20,11 @@
       controller: `ShopsController`,
       controllerAs: `shopsController`
     })
+    .when('/items', {
+      templateUrl: 'partials/admin-items.html',
+      controller: `ItemsController`,
+      controllerAs: `itemsController`
+    })
     .when('/reports', {
       templateUrl: 'partials/admin-reports.html',
       controller: `ReportsController`,

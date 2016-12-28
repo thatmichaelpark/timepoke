@@ -155,5 +155,54 @@
         boo.boo(err);
       });
     };
+  })
+  .controller('ItemsController', function(items, shops, boo) {
+    this.showActiveOnly = true;
+
+    this.filter = () => {
+      return this.showActiveOnly ?
+        { name: this.searchString, isActive: true } :
+        { name: this.searchString };
+    };
+
+    this.getShops = () => {
+      shops.get()
+      .then(data => {
+        this.shops = data;
+        console.log(this.shops);
+      })
+      .catch(err => {
+        boo.boo(err);
+      });
+    }
+
+    this.getItems = () => {
+      items.get()
+      .then(data => {
+        this.items = data;
+        console.log('items', this.items);
+      })
+      .catch(err => {
+        boo.boo(err);
+      });
+    }
+
+    this.getItems();
+    this.getShops();
+
+    this.shopLookup = (shopId) => this.shops ?
+      this.shops.filter(shop => shop.id === shopId)[0].name
+      : null;
+
+    this.click = (item) => {
+      if (item) {
+        const { id, name, isActive, shopId } = item;
+        this.form = { id, name, isActive, shopId };
+      }
+      else {
+        this.form = { isActive: true, shopId: 1 };
+      }
+      $(`#item-edit-modal`).modal({backdrop: `static`});
+    };
   });
 })();

@@ -62,6 +62,10 @@ DONE shops.post (plus check for name in use); same-name check in shops.patch (ex
 DONE shop dialog: imageUrl
 
 TODO
-shop dialog: manage items
+manage items
+DONE  figure out items dialog select ng-options
+  verify post & patch
+  verify inactive items don't show up on resources screen
+
 reports
 (edit time entries?)

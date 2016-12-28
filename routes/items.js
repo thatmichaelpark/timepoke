@@ -25,7 +25,7 @@ const { checkAuth } = require('./middleware');
 
 router.get(`/items/`, (req, res, next) => {
   knex('items')
-  .select(`id`, `name`, `shop_id`)
+  .select(`id`, `name`, `shop_id`, `is_active`)
   .then((items) => {
     res.send(camelizeKeys(items));
   })
