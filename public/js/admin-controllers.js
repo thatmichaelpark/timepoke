@@ -152,7 +152,6 @@
         this.getShops();
       })
       .catch((err) => {
-        console.log('boo boo');
         boo.boo(err);
       });
     };

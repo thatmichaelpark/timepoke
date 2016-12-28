@@ -132,6 +132,11 @@
         .catch((err) => {
           throw err;
         }),
+      post: (data) =>
+        $http.post(server, data)
+        .then((res) =>
+          res.data
+        ),
       patch: (data) =>
         $http.patch(`${server}/${data.id}`, data)
         .then((res) =>
@@ -211,7 +216,7 @@
   report.$inject = ['$http'];
 
   const timer = function($timeout, $location) {
-    const delay = 60000; 
+    const delay = 60000;
     const fn = () => {
       $location.path('/');
     };

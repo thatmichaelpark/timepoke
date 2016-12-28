@@ -52,21 +52,22 @@ router.get('/shops/:id/items', (req, res, next) => {
 });
 
 router.post('/shops', /*ev(validations.post),*/ (req, res, next) => {
-  const shopName = req.body.shopName.trim().replace(/\s+/g, ' ');
+  console.log(req.body);
+  const name = req.body.name.trim().replace(/\s+/g, ' ');
   const imageUrl = req.body.imageUrl;
 
-  knex('shops').where('shop_name', 'ilike', shopName)
+  knex('shops').where('name', 'ilike', name)
     .then((shops) => {
       if (shops.length > 0) {
         throw boom.create(400, 'That name is already in use');
       }
 
       return knex('shops')
-        .insert(decamelizeKeys({ shopName, imageUrl }), '*');
+        .insert(decamelizeKeys({ name, imageUrl }), '*');
     })
     .then((result) => {
       res.send({
-        shopName: result[0].shop_name,
+        name: result[0].name,
         imageUrl: result[0].image_url,
         id: result[0].id
       });
@@ -77,9 +78,16 @@ router.post('/shops', /*ev(validations.post),*/ (req, res, next) => {
 });
 
 router.patch('/shops/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
-  knex('shops')
-  .update(decamelizeKeys(req.body), ['id', 'name', `is_active`])
-  .where('id', req.params.id)
+  const name = req.body.name.trim().replace(/\s+/g, ' ');
+  knex('shops').where('name', 'ilike', name).where('id', '!=', req.params.id)
+    .then((shops) => {
+      if (shops.length > 0) {
+        throw boom.create(400, 'That name is already in use');
+      }
+    return knex('shops')
+      .update(decamelizeKeys(req.body), ['id', 'name', `is_active`])
+      .where('id', req.params.id)
+  })
   .then((shops) => {
     res.send(camelizeKeys(shops[0]));
   })

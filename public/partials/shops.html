@@ -1,7 +1,7 @@
 <div class="shops">
   <div class="centered">Select Workshop</div>
   <div class="circles-list">
-    <div ng-repeat="shop in shopsController.shops | orderBy: 'name'" class="stretchy-wrapper">
+    <div ng-repeat="shop in shopsController.shops | filter: {isActive: true} | orderBy: 'name'" class="stretchy-wrapper">
       <a ng-click="shopsController.click(shop)">
         <img ng-src="{{ shop.imageUrl }}" alt="{{ shop.imageUrl }}" />
         <div class="circle-text">
