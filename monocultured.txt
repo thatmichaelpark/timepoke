@@ -59,9 +59,9 @@ DONE disable confirm until non-zero input
 DONE membership type
 DONE timeout
 DONE shops.post (plus check for name in use); same-name check in shops.patch (except for same id)
+DONE shop dialog: imageUrl
 
 TODO
-shop dialog: imageUrl
 shop dialog: manage items
 reports
 (edit time entries?)

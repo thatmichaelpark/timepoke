@@ -136,11 +136,11 @@
 
     this.click = (shop) => {
       if (shop) {
-        const { id, name, isActive } = shop;
-        this.form = { id, name, isActive };
+        const { id, name, isActive, imageUrl } = shop;
+        this.form = { id, name, isActive, imageUrl };
       }
       else {
-        this.form = { isActive: true };
+        this.form = { isActive: true, imageUrl: 'img/darkroom.jpg' };
       }
       $(`#shop-edit-modal`).modal({backdrop: `static`});
     };

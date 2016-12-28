@@ -57,8 +57,19 @@
               <input type="checkbox" ng-model="shopsController.form.isActive">Active
             </label>
           </div>
+          <div class="form-group">
+            <label for="imageUrl">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" ng-model="shopsController.form.imageUrl">
+          </div>
         </form>
-        <img ng-src="{{ shopsController.form.imageUrl }}" alt="" />
+        <div class="centered">
+          <div class="stretchy-wrapper">
+            <img ng-src="{{ shopsController.form.imageUrl }}" alt="" />
+            <div class="circle-text">
+              <span ng-repeat="n in shopsController.form.name.split(' ') track by $index">{{ n }}</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
