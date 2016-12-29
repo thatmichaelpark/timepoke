@@ -11,7 +11,7 @@
           <button ng-click="hoursController.click('-')">-</button>
         </td>
       </tr>
-      <tr ng-repeat="item in itemsController.entry.items | orderBy: 'name'">
+      <tr ng-repeat="item in itemsController.entry.items | filter: { isActive: true } | orderBy: 'name'">
         <td class="right">
           {{ item.name }}
         </td>

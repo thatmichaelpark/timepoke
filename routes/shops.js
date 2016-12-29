@@ -52,7 +52,6 @@ router.get('/shops/:id/items', (req, res, next) => {
 });
 
 router.post('/shops', /*ev(validations.post),*/ (req, res, next) => {
-  console.log(req.body);
   const name = req.body.name.trim().replace(/\s+/g, ' ');
   const imageUrl = req.body.imageUrl;
 

@@ -61,11 +61,9 @@ DONE timeout
 DONE shops.post (plus check for name in use); same-name check in shops.patch (except for same id)
 DONE shop dialog: imageUrl
 
+DONE manage items: figure out items dialog select ng-options; verify post & patch; verify inactive items don't show up on resources screen
+
 TODO
-manage items
-DONE  figure out items dialog select ng-options
-  verify post & patch
-  verify inactive items don't show up on resources screen
 
 reports
 (edit time entries?)

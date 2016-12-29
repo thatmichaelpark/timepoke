@@ -32,6 +32,7 @@
           return {
             id: item.id,
             name: item.name,
+            isActive: item.isActive,
             quantity: 0
           };
         });

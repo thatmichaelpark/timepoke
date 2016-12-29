@@ -169,7 +169,6 @@
       shops.get()
       .then(data => {
         this.shops = data;
-        console.log(this.shops);
       })
       .catch(err => {
         boo.boo(err);
@@ -203,6 +202,17 @@
         this.form = { isActive: true, shopId: 1 };
       }
       $(`#item-edit-modal`).modal({backdrop: `static`});
+    };
+
+    this.save = (data) => {
+      $(`#item-edit-modal`).modal('hide');
+      (this.form.id ? items.patch(this.form) : items.post(this.form))
+      .then((res) => {
+        this.getItems();
+      })
+      .catch((err) => {
+        boo.boo(err);
+      });
     };
   });
 })();
