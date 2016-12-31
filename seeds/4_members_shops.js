@@ -1,13 +1,13 @@
 'use strict';
 
-const MEMBERS = 500;
-const SHOPS = 4;
+const { NMEMBERS, NSHOPS } = require('./utils/utils');
+
 const p = 0.2;
 
 const stuff = [];
 
-for (let m = 1; m <= MEMBERS; ++m) {
-  for (let s = 1; s <= SHOPS; ++s) {
+for (let m = 1; m <= NMEMBERS; ++m) {
+  for (let s = 1; s <= NSHOPS; ++s) {
     if (Math.random() < p) {
       stuff.push({ member_id: m, shop_id: s });
     }
