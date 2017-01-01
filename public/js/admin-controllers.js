@@ -219,8 +219,8 @@
 
     this.filter = () => {
       return this.showActiveOnly ?
-        { name: this.searchString, isActive: true } :
-        { name: this.searchString };
+        { memberName: this.searchString, isActive: true } :
+        { memberName: this.searchString };
     };
 
     this.getReports = () => {
