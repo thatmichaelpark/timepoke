@@ -72,7 +72,7 @@ router.get(`/entries/full`, (req, res, next) => {
 });
 
 
-router.post('/entries', /*ev(validations.post),*/ (req, res, next) => {
+router.post('/entries', checkAuth, /*ev(validations.post),*/ (req, res, next) => {
   const { memberId, shopId, hours, items } = req.body.entry;
 
   knex('entries')

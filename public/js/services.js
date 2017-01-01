@@ -209,6 +209,22 @@
         .catch((err) => {
           throw err;
         }),
+      getReports: () =>
+        $http.get(`/api/reports`)
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          throw err;
+        }),
+      getReport: (id) =>
+        $http.get(`/api/reports/${id}`)
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          throw err;
+        })
     };
   };
 

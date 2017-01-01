@@ -35,7 +35,7 @@ router.get('/items/byshopid/:shopId', (req, res, next) => {
     });
 });
 
-router.post('/items', /*ev(validations.post),*/ (req, res, next) => {
+router.post('/items', checkAuth, /*ev(validations.post),*/ (req, res, next) => {
   const name = req.body.name.trim().replace(/\s+/g, ' ');
   const { isActive, shopId } = req.body;
 

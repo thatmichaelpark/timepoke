@@ -179,7 +179,6 @@
       items.get()
       .then(data => {
         this.items = data;
-        console.log('items', this.items);
       })
       .catch(err => {
         boo.boo(err);
@@ -214,5 +213,26 @@
         boo.boo(err);
       });
     };
+  })
+  .controller('ReportsController', function(report, shops, boo) {
+    this.showActiveOnly = true;
+
+    this.filter = () => {
+      return this.showActiveOnly ?
+        { name: this.searchString, isActive: true } :
+        { name: this.searchString };
+    };
+
+    this.getReports = () => {
+      report.getReports()
+      .then(data => {
+        this.reports = data;
+      })
+      .catch(err => {
+        boo.boo(err);
+      });
+    };
+
+    this.getReports();
   });
 })();

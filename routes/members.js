@@ -37,7 +37,7 @@ router.get('/members/:id/shops', (req, res, next) => {
 });
 
 // save a member's shops:
-router.post('/members/:id/shops', (req, res, next) => {
+router.post('/members/:id/shops', checkAuth, (req, res, next) => {
   const { id } = req.params;
   const { shopIds } = req.body;
 
@@ -58,7 +58,7 @@ router.post('/members/:id/shops', (req, res, next) => {
     });
 });
 
-router.post('/members', /*ev(validations.post),*/ (req, res, next) => {
+router.post('/members', checkAuth, /*ev(validations.post),*/ (req, res, next) => {
   const name = req.body.name.trim().replace(/\s+/g, ' ');
   const { imageUrl, isActive } = req.body;
 

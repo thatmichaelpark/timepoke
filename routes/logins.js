@@ -23,7 +23,7 @@ router.get('/logins', (req, res, next) => {
     });
 });
 
-router.post('/logins', /*ev(validations.post),*/ (req, res, next) => {
+router.post('/logins', checkAuth, /*ev(validations.post),*/ (req, res, next) => {
   const loginName = req.body.loginName.trim().replace(/\s+/g, ' ');
   const password = req.body.password.trim();
   const { isAdmin, isActive } = req.body;
