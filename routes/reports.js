@@ -57,6 +57,7 @@ function blah(obj) {
                                                   //  where a word is alphanumeric or space or &
     .replace(/\(/g, `[`)                          // Change ()
     .replace(/(,?\))/g, `]`);                     //  to []
+console.log('str', str);;;
   const arr = JSON.parse(`[${str}]`);
   const results = arr.map(a => {
     return {

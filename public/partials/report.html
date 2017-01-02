@@ -5,8 +5,10 @@
       <ul>
         <li ng-repeat="shop in reportController.data">
           {{ shop.hours }} hours in {{ shop.shop }}
-          <ul ng-repeat="item in shop.items">
-            {{ item.quantity }} {{ item.item }}
+          <ul>
+            <li ng-repeat="item in shop.items">
+              {{ item.quantity }} {{ item.item }}
+            </li>
           </ul>
         </li>
       </ul>
