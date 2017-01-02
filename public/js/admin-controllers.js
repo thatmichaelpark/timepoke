@@ -235,6 +235,10 @@
 
     this.getReports();
 
+    this.totalHours = (r) => {
+      return r.reduce((acc, e) => acc + e.hours, 0);
+    };
+
     this.click = (r) => {
       this.form = { memberName: r.memberName };
       report.getReportDetails(r.memberId)
