@@ -53,11 +53,10 @@ const makeQuery = (id) => {
 
 function blah(obj) {
   const str = obj.results.replace(/"/g, '')       // First, eliminate quotes
-    .replace(/((?:\w|\s|&)+),(\d+)/g, `"$1",$2`)  // Then, put quotes around words
-                                                  //  where a word is alphanumeric or space or &
+    .replace(/\(([^,]+),(\d+)/g, `("$1",$2`)      // Then, put quotes around words
+                                                  //  where a word is everything between ( and ,
     .replace(/\(/g, `[`)                          // Change ()
     .replace(/(,?\))/g, `]`);                     //  to []
-console.log('str', str);;;
   const arr = JSON.parse(`[${str}]`);
   const results = arr.map(a => {
     return {
@@ -126,13 +125,11 @@ const makeDetailQuery = (id) => `
   on entries.entry_id = items.entry_id`;
 
 function detailBlah(obj) {
-  console.log(obj.items);
   const str = (obj.items || ``).replace(/"/g, '') // First, eliminate quotes
-    .replace(/((?:\w|\s|&)+),(\d+)/g, `"$1",$2`)  // Then, put quotes around words
-                                                  //  where a word is alphanumeric or space or &
+    .replace(/\(([^,]+),(\d+)/g, `("$1",$2`)      // Then, put quotes around words
+                                                  //  where a word is everything between ( and ,
     .replace(/\(/g, `[`)                          // Change ()
     .replace(/\)/g, `]`);                         //  to []
-    console.log(str);
   const arr = JSON.parse(`[${str}]`);
   obj.items = arr.map(a => ({ itemName: a[0], quantity: a[1]}));
   return obj;
