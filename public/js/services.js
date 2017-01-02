@@ -224,7 +224,16 @@
         })
         .catch((err) => {
           throw err;
+        }),
+      getReportDetails: (id) =>
+        $http.get(`/api/reports/${id}/details`)
+        .then((res) => {
+          return res.data;
         })
+        .catch((err) => {
+          throw err;
+        })
+
     };
   };
 

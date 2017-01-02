@@ -6,7 +6,7 @@
         <li ng-repeat="shop in reportController.data">
           {{ shop.hours }} hours in {{ shop.shop }}
           <ul ng-repeat="item in shop.items">
-            {{ item.quantity }} of {{ item.item }}
+            {{ item.quantity }} {{ item.item }}
           </ul>
         </li>
       </ul>

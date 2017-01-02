@@ -66,4 +66,5 @@ DONE manage items: figure out items dialog select ng-options; verify post & patc
 TODO
 
 reports
+redo member report screen to use report api instead of crazy code
 (edit time entries?)

@@ -234,5 +234,18 @@
     };
 
     this.getReports();
+
+    this.click = (r) => {
+      this.form = { memberName: r.memberName };
+      report.getReportDetails(r.memberId)
+      .then(deets => {
+        this.form.deets = deets;
+      })
+      .catch(err => boo.boo(err));
+
+      $(`#report-edit-modal`).modal({backdrop: `static`});
+    };
+
+
   });
 })();
