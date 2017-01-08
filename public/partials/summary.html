@@ -5,7 +5,7 @@
         {{ summaryController.entry.memberName }}
       </p>
       <p>
-        {{ summaryController.entry.hours }} hours in {{ summaryController.entry.shopName }}
+        {{ summaryController.entry.hours }} timmar i {{ summaryController.entry.shopName }}
       </p>
       <div ng-repeat="item in summaryController.entry.items | filter: summaryController.filterFn() | orderBy: 'name'">
         {{ item.quantity }} {{ item.name }}
@@ -15,7 +15,7 @@
 
 
   <nav>
-    <button class="left" type="button" name="back" ng-click="summaryController.clickBack()">Back</button>
-    <button class="right" type="button" name="confirm" ng-click="summaryController.clickConfirm()">Confirm</button>
+    <button class="left" type="button" name="back" ng-click="summaryController.clickBack()">Tillbaka</button>
+    <button class="right" type="button" name="confirm" ng-click="summaryController.clickConfirm()">Bekräfta</button>
   </nav>
 </div>

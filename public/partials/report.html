@@ -4,7 +4,7 @@
       <h2>{{ reportController.entry.memberName }} ({{ reportController.entry.membershipTier}})</h2>
       <ul>
         <li ng-repeat="shop in reportController.data">
-          {{ shop.hours }} hours in {{ shop.shop }}
+          {{ shop.hours }} timmar i {{ shop.shop }}
           <ul>
             <li ng-repeat="item in shop.items">
               {{ item.quantity }} {{ item.item }}
@@ -12,11 +12,11 @@
           </ul>
         </li>
       </ul>
-      Total hours: {{ reportController.total }}
+      Summa timmar: {{ reportController.total }}
     </div>
   </div>
   <nav>
-    <button class="right" type="button" name="confirm" ng-click="reportController.clickDone()">Done</button>
+    <button class="right" type="button" name="confirm" ng-click="reportController.clickDone()">Bekräfta</button>
   </nav>
 
 </div>

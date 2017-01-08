@@ -3,7 +3,7 @@
     <table class="centered">
       <tr>
         <td>
-          Hours in {{ itemsController.entry.shopName }}
+          Timmar i {{ itemsController.entry.shopName }}
         </td>
         <td>
           <button ng-click="hoursController.click('+')">+</button>
@@ -25,8 +25,8 @@
   </div>
 
   <nav>
-    <button  class="left" type="button" name="back" ng-click="resourcesController.clickBack()">Back</button>
+    <button  class="left" type="button" name="back" ng-click="resourcesController.clickBack()">Tillbaka</button>
     <button  class="right" type="button" name="confirm" ng-click="resourcesController.clickConfirm()"
-      ng-disabled="resourcesController.disableConfirm()" ng-class="{ disabled: resourcesController.disableConfirm() }">Confirm</button>
+      ng-disabled="resourcesController.disableConfirm()" ng-class="{ disabled: resourcesController.disableConfirm() }">Bekräfta</button>
   </nav>
 </div>

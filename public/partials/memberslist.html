@@ -1,6 +1,6 @@
 <!-- <input type="text" name="search" value="" ng-model="membersListController.search"> -->
 <div class="members">
-  <div class="centered">Who are you?</div>
+  <div class="centered">Vem är du?</div>
   <div class="circles-list">
     <div ng-repeat="member in membersListController.members | filter: membersListController.search | orderBy: 'name'" class="stretchy-wrapper">
       <a ng-click="membersListController.click(member)">
@@ -13,6 +13,6 @@
   </div>
 
   <nav>
-    <button type="button" name="back" ng-click="membersListController.clickBack()">Back</button>
+    <button type="button" name="back" ng-click="membersListController.clickBack()">Tillbaka</button>
   </nav>
 </div>

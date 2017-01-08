@@ -1,5 +1,5 @@
 <div class="shops">
-  <div class="centered">Select Workshop</div>
+  <div class="centered">Välj verkstad</div>
   <div class="circles-list">
     <div ng-repeat="shop in shopsController.shops | filter: {isActive: true} | orderBy: 'name'" class="stretchy-wrapper">
       <a ng-click="shopsController.click(shop)">
@@ -12,6 +12,6 @@
   </div>
 
   <nav>
-    <button type="button" name="back" ng-click="shopsController.clickBack()">Back</button>
+    <button type="button" name="back" ng-click="shopsController.clickBack()">Tillbaka</button>
   </nav>
 </div>
