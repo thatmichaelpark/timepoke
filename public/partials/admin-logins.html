@@ -1,10 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Logins</div>
+  <div class="panel-heading">Inloggningar</div>
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
-          <span class="input-group-addon" id="search-label">Search</span>
+          <span class="input-group-addon" id="search-label">Sök</span>
           <input type="text" ng-model="loginsController.searchString" class="form-control" aria-describedby="search-label">
         </div>
       </div><!-- /.col-lg-6 -->
@@ -12,27 +12,27 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="loginsController.showActiveOnly">
-            Hide inactive logins
+            Göm inaktiva inloggningar
           </label>
         </div>
       </div><!-- /.col-lg-3 -->
       <div class="col-lg-3">
-        <button type="button" class="btn btn-primary" ng-click="loginsController.click(null)">Add New Login</button>
+        <button type="button" class="btn btn-primary" ng-click="loginsController.click(null)">Lägg till inloggning</button>
       </div><!-- /.col-lg-3 -->
     </div><!-- /.row -->
   </div>
 
   <table class="table table-hover">
     <thead>
-      <th>Login</th>
+      <th>Inloggning</th>
       <th>Admin?</th>
-      <th>Active?</th>
+      <th>Aktiv?</th>
     </thead>
     <tbody>
       <tr ng-repeat="login in loginsController.logins | filter: loginsController.filter() | orderBy: 'loginName'" ng-click="loginsController.click(login)">
         <td>{{ login.loginName }}</td>
-        <td>{{ login.isAdmin }}</td>
-        <td>{{ login.isActive }}</td>
+        <td>{{ login.isAdmin ? 'Sant' : 'Falskt' }}</td>
+        <td>{{ login.isActive ? 'Sant' : 'Falskt' }}</td>
       </tr>
     </tbody>
   </table>

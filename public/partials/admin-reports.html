@@ -1,10 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Reports</div>
+  <div class="panel-heading">Rapporter</div>
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
-          <span class="input-group-addon" id="search-label">Search</span>
+          <span class="input-group-addon" id="search-label">Sök</span>
           <input type="text" ng-model="reportsController.searchString" class="form-control" aria-describedby="search-label">
         </div>
       </div><!-- /.col-lg-6 -->
@@ -12,7 +12,7 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="reportsController.showActiveOnly">
-            Hide inactive members
+            Göm inaktiva medlemmar
           </label>
         </div>
       </div><!-- /.col-lg-3 -->
@@ -21,9 +21,9 @@
 
   <table class="table table-hover">
     <thead>
-      <th>Member</th>
-      <th>Totals</th>
-      <th>Active?</th>
+      <th>Medlem</th>
+      <th>Summa</th>
+      <th>Aktiv?</th>
     </thead>
     <tbody>
       <tr ng-repeat="report in reportsController.reports | filter: reportsController.filter() | orderBy: 'name'" ng-click="reportsController.click(report)">
@@ -31,7 +31,7 @@
         <td>
           <ul>
             <li ng-repeat="shop in report.results">
-              {{ shop.hours }} hours in {{ shop.shop }}
+              {{ shop.hours }} timmar i {{ shop.shop }}
               <ul>
                 <li ng-repeat="item in shop.items | orderBy: 'item'">
                   {{ item.quantity }} {{ item.item }}
@@ -39,9 +39,9 @@
               </ul>
             </li>
           </ul>
-          Total hours: {{ reportsController.totalHours(report.results) }}
+          Summa timmar: {{ reportsController.totalHours(report.results) }}
         </td>
-        <td>{{ report.isActive }}</td>
+        <td>{{ report.isActive ? 'Sant' : 'Falskt' }}</td>
       </tr>
     </tbody>
   </table>
@@ -61,9 +61,9 @@
         <table class="table table-striped">
           <thead>
             <th>Date</th>
-            <th>Workshop</th>
-            <th>Hours</th>
-            <th>Items</th>
+            <th>Verkstad</th>
+            <th>Timmar</th>
+            <th>Resurser</th>
           </thead>
           <tbody>
             <tr ng-repeat="entry in reportsController.form.deets | orderBy: 'createdAt'">

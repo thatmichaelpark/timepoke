@@ -1,10 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Workshop Items</div>
+  <div class="panel-heading">Resurser</div>
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
-          <span class="input-group-addon" id="search-label">Search</span>
+          <span class="input-group-addon" id="search-label">Sök</span>
           <input type="text" ng-model="itemsController.searchString" class="form-control" aria-describedby="search-label">
         </div>
       </div><!-- /.col-lg-6 -->
@@ -12,27 +12,27 @@
         <div class="checkbox">
           <label>
             <input type="checkbox" ng-model="itemsController.showActiveOnly">
-            Hide inactive items
+            Göm inaktiva resurser
           </label>
         </div>
       </div><!-- /.col-lg-3 -->
       <div class="col-lg-3">
-        <button type="button" class="btn btn-primary" ng-click="itemsController.click(null)">Add New Item</button>
+        <button type="button" class="btn btn-primary" ng-click="itemsController.click(null)">Lägg Till Resurse</button>
       </div><!-- /.col-lg-3 -->
     </div><!-- /.row -->
   </div>
 
   <table class="table table-hover">
     <thead>
-      <th>Item</th>
-      <th>Workshop</th>
-      <th>Active?</th>
+      <th>Resurse</th>
+      <th>Verkstad</th>
+      <th>Aktiv?</th>
     </thead>
     <tbody>
       <tr ng-repeat="item in itemsController.items | filter: itemsController.filter() | orderBy: 'name'" ng-click="itemsController.click(item)">
         <td>{{ item.name }}</td>
         <td>{{ itemsController.shopLookup(item.shopId) }}</td>
-        <td>{{ item.isActive }}</td>
+        <td>{{ item.isActive ? 'Sant' : 'Falskt' }}</td>
       </tr>
     </tbody>
   </table>
@@ -45,23 +45,23 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">
-          {{ itemsController.form.id ? 'Item ' + itemsController.form.id : 'New Item'}}
+          {{ itemsController.form.id ? 'Resurse ' + itemsController.form.id : 'Till Resurse'}}
         </h4>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="name">Item</label>
+            <label for="name">Resurse</label>
             <input type="text" class="form-control" id="name" ng-model="itemsController.form.name">
           </div>
           <div class="form-group">
-            <label for="shop">Workshop</label>
+            <label for="shop">Verktad</label>
             <select ng-model="itemsController.form.shopId" ng-options="shop.id as shop.name for shop in itemsController.shops">
             </select>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" ng-model="itemsController.form.isActive">Active
+              <input type="checkbox" ng-model="itemsController.form.isActive">Aktiv
             </label>
           </div>
         </form>
