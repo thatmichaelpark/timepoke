@@ -39,15 +39,14 @@ router.post('/items', checkAuth, /*ev(validations.post),*/ (req, res, next) => {
   const name = req.body.name.trim().replace(/\s+/g, ' ');
   const { isActive, shopId } = req.body;
 
-  knex('items').where('name', 'ilike', name)
-    .then((items) => {
-      if (items.length > 0) {
-        throw boom.create(400, 'That name is already in use');
-      }
+  // knex('items').where('name', 'ilike', name)
+  //   .then((items) => {
+  //     if (items.length > 0) {
+  //       throw boom.create(400, 'That name is already in use');
+  //     }
 
-      return knex('items')
-        .insert(decamelizeKeys({ name, isActive, shopId }), '*');
-    })
+    knex('items')
+    .insert(decamelizeKeys({ name, isActive, shopId }), '*')
     .then((result) => {
       res.send({
         name: result[0].name,
