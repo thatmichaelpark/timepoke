@@ -24,7 +24,7 @@ exports.seed = function(knex) {
           name: 'Koppargrafik',
           image_url: `img/foundry.jpg`
         }, {
-          name: 'Laserkärere',
+          name: 'Laserskärere',
           image_url: `img/darkroom.jpg`
         }, {
           name: 'Litografi',
