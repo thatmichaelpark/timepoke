@@ -56,7 +56,7 @@
       const { id, name, imageUrl, isActive, membershipTier, shops } = this.form;
       const shopIds = shops.filter(shop => shop.checked).map(shop => shop.id);
 
-      (id ? members.patch(id, { name, imageUrl, isActive, membershipTier })
+      (id ? members.put(id, { name, imageUrl, isActive, membershipTier })
           : members.post({ id, name, imageUrl, isActive, membershipTier }))
       .then(() => {
         members.saveShops(id, shopIds);
@@ -104,7 +104,7 @@
 
     this.save = (data) => {
       $(`#login-edit-modal`).modal('hide');
-      (this.form.id ? logins.patch(this.form) : logins.post(this.form))
+      (this.form.id ? logins.put(this.form) : logins.post(this.form))
       .then((res) => {
         this.getLogins();
       })
@@ -147,7 +147,7 @@
 
     this.save = (data) => {
       $(`#shop-edit-modal`).modal('hide');
-      (this.form.id ? shops.patch(this.form) : shops.post(this.form))
+      (this.form.id ? shops.put(this.form) : shops.post(this.form))
       .then((res) => {
         this.getShops();
       })
@@ -205,7 +205,7 @@
 
     this.save = (data) => {
       $(`#item-edit-modal`).modal('hide');
-      (this.form.id ? items.patch(this.form) : items.post(this.form))
+      (this.form.id ? items.put(this.form) : items.post(this.form))
       .then((res) => {
         this.getItems();
       })

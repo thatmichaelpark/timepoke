@@ -285,7 +285,7 @@
   //   });
   //
   //   this.submit = () => {
-  //     users.patch(this.form.id, this.form)
+  //     users.put(this.form.id, this.form)
   //     .then(() => {
   //       $location.path('users');
   //     })
@@ -378,7 +378,7 @@
   //     const { id } = this.form;
   //
   //     if (id) {
-  //       puzzles.patch(id, this.form)
+  //       puzzles.put(id, this.form)
   //       .then(() => {
   //         $location.path('puzzles');
   //       })

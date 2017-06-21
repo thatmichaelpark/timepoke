@@ -82,8 +82,8 @@
         .catch((err) => {
           throw err;
         }),
-      patch: (id, data) =>
-        $http.patch(`${server}/${id}`, data)
+      put: (id, data) =>
+        $http.put(`${server}/${id}`, data)
         .then((res) =>
           res.data
         )
@@ -137,8 +137,8 @@
         .then((res) =>
           res.data
         ),
-      patch: (data) =>
-        $http.patch(`${server}/${data.id}`, data)
+      put: (data) =>
+        $http.put(`${server}/${data.id}`, data)
         .then((res) =>
           res.data
         )
@@ -162,8 +162,8 @@
         .then((res) =>
           res.data
         ),
-      patch: (data) =>
-        $http.patch(`${server}/${data.id}`, data)
+      put: (data) =>
+        $http.put(`${server}/${data.id}`, data)
         .then((res) =>
           res.data
         )
@@ -187,8 +187,8 @@
         .then((res) =>
           res.data
         ),
-      patch: (data) =>
-        $http.patch(`${server}/${data.id}`, data)
+      put: (data) =>
+        $http.put(`${server}/${data.id}`, data)
         .then((res) =>
           res.data
         )
