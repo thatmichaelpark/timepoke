@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken');
 
 const checkAuth = function(req, res, next) {
-  jwt.verify(req.cookies.MonoculturedAccessToken, process.env.JWT_SECRET,
+  jwt.verify(req.cookies.timepokeAccessToken, process.env.JWT_SECRET,
     (err, decoded) => {
       if (err) {
         return res.sendStatus(401);
@@ -17,7 +17,7 @@ const checkAuth = function(req, res, next) {
 
 const decodeAuth = function(req, res, next) {
 // Same as checkAuth except any error is ignored.
-  jwt.verify(req.cookies.MonoculturedAccessToken, process.env.JWT_SECRET,
+  jwt.verify(req.cookies.timepokeAccessToken, process.env.JWT_SECRET,
     (err, decoded) => {
       if (!err) {
         req.token = decoded; // Access the payload via req.token.userId etc

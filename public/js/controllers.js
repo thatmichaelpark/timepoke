@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('monoculturedApp')
+  angular.module('timepokeApp')
   // .controller('MembersController', ($scope, $location) => {
     // const ipc = electron.ipcRenderer;
     //

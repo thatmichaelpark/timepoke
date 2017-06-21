@@ -55,7 +55,7 @@ router.post('/logins', checkAuth, /*ev(validations.post),*/ (req, res, next) => 
     });
 });
 
-router.patch('/logins/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
+router.put('/logins/:id', checkAuth, /*ev(validations.put),*/ (req, res, next) => {
   const password = req.body.password ? req.body.password.trim() : `dummy password`;
 
   bcrypt.hash(password, 12)

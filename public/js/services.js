@@ -2,7 +2,7 @@
 (function() {
   'use strict';
 
-  const app = angular.module('monoculturedApp');
+  const app = angular.module('timepokeApp');
 
   const boo = function() {
     return {

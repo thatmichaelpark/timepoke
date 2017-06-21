@@ -76,7 +76,7 @@ router.post('/shops', /*ev(validations.post),*/ (req, res, next) => {
     });
 });
 
-router.patch('/shops/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
+router.put('/shops/:id', checkAuth, /*ev(validations.put),*/ (req, res, next) => {
   const name = req.body.name.trim().replace(/\s+/g, ' ');
   knex('shops').where('name', 'ilike', name).where('id', '!=', req.params.id)
     .then((shops) => {

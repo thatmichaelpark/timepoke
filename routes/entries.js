@@ -96,7 +96,7 @@ router.post('/entries', checkAuth, /*ev(validations.post),*/ (req, res, next) =>
     });
 });
 
-// router.patch('/shops/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
+// router.put('/shops/:id', checkAuth, /*ev(validations.put),*/ (req, res, next) => {
 //   if (req.token.shop_name !== 'admin') {
 //     return next(boom.create(401, 'Not logged in as admin'));
 //   }

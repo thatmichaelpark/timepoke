@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  const app = angular.module('monoculturedApp');
+  const app = angular.module('timepokeApp');
 
   app.config(($routeProvider) => {
     $routeProvider

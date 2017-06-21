@@ -37,23 +37,23 @@ router.post('/token', (req, res, next) => {
         { /*expiresIn: `3h`*/ }
       );
 
-      res.cookie('MonoculturedAccessToken', token, {
+      res.cookie('timepokeAccessToken', token, {
         httpOnly: true,
         // expires: expiry,
         secure: router.get('env') === 'production'
       });
 
-      res.cookie('MonoculturedLoggedIn', true, {
+      res.cookie('timepokeLoggedIn', true, {
         // expires: expiry,
         secure: router.get('env') === 'production'
       });
 
-      res.cookie('MonoculturedLoginName', payload.loginName, {
+      res.cookie('timepokeLoginName', payload.loginName, {
         // expires: expiry,
         secure: router.get('env') === 'production'
       });
 
-      res.cookie('MonoculturedLoginId', payload.loginId, {
+      res.cookie('timepokeLoginId', payload.loginId, {
         // expires: expiry,
         secure: router.get('env') === 'production'
       });
@@ -69,10 +69,10 @@ router.post('/token', (req, res, next) => {
 });
 
 router.delete('/token', (req, res) => {
-  res.clearCookie('MonoculturedAccessToken');
-  res.clearCookie('MonoculturedLoggedIn');
-  res.clearCookie('MonoculturedLoginName');
-  res.clearCookie('MonoculturedLoginId');
+  res.clearCookie('timepokeAccessToken');
+  res.clearCookie('timepokeLoggedIn');
+  res.clearCookie('timepokeLoginName');
+  res.clearCookie('timepokeLoginId');
 
   res.sendStatus(200);
 });

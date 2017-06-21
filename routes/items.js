@@ -60,7 +60,7 @@ router.post('/items', checkAuth, /*ev(validations.post),*/ (req, res, next) => {
     });
 });
 
-router.patch('/items/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
+router.put('/items/:id', checkAuth, /*ev(validations.put),*/ (req, res, next) => {
   knex('items')
   .update(decamelizeKeys(req.body), ['id', 'name', 'is_active', 'shop_id'])
   .where('id', req.params.id)

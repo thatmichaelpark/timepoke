@@ -85,7 +85,7 @@ router.post('/members', checkAuth, /*ev(validations.post),*/ (req, res, next) =>
     });
 });
 
-router.patch('/members/:id', checkAuth, /*ev(validations.patch),*/ (req, res, next) => {
+router.put('/members/:id', checkAuth, /*ev(validations.put),*/ (req, res, next) => {
   knex('members')
   .update(decamelizeKeys(req.body), ['id', 'name', 'image_url', 'is_active', 'membership_tier'])
   .where('id', req.params.id)
