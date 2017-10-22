@@ -3,7 +3,12 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/timepoke_dev'
+    connection: {
+	host: 'localhost',
+	user: 'postgres',
+	password: 'password',
+	database: 'timepoke_dev'
+    }
   },
   test: {
     client: 'pg',
