@@ -58,8 +58,8 @@
 
       (id ? members.put(id, { name, imageUrl, isActive, membershipTier })
           : members.post({ id, name, imageUrl, isActive, membershipTier }))
-      .then(() => {
-        members.saveShops(id, shopIds);
+      .then((x) => {
+        members.saveShops(id || x.id, shopIds);
       })
       .then(() => {
         $(`#member-edit-modal`).modal('hide');
